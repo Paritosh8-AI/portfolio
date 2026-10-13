@@ -96,7 +96,7 @@ class SynthLabAudio {
 
 const synthAudio = new SynthLabAudio();
 
-// --- SUBTLE LIGHT-MODE PARTICLE CANVAS ---
+// --- SUBTLE LIGHT-MODE PARTICLE CANVAS WITH WARP FLY-THROUGH ---
 function initParticleCanvas() {
   const canvas = document.getElementById('canvas-particles');
   if (!canvas) return;
@@ -107,6 +107,13 @@ function initParticleCanvas() {
   const connectionDist = 120;
 
   const mouse = { x: null, y: null, radius: 140 };
+
+  let targetFlySpeed = 0;
+  let currentFlySpeed = 0;
+
+  window.setParticleFlySpeed = function (progress) {
+    targetFlySpeed = progress;
+  };
 
   function resize() {
     width = canvas.width = window.innerWidth;
@@ -132,6 +139,7 @@ function initParticleCanvas() {
       this.vx = (Math.random() - 0.5) * 0.35;
       this.vy = (Math.random() - 0.5) * 0.35;
       this.radius = Math.random() * 1.5 + 1;
+      this.drawRadius = this.radius;
       this.color = Math.random() > 0.5 ? '#FF78AC' : '#A8D5E3';
     }
 
@@ -139,8 +147,26 @@ function initParticleCanvas() {
       this.x += this.vx;
       this.y += this.vy;
 
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
+      // Cinematic radial fly-through warp acceleration during hero scroll
+      if (currentFlySpeed > 0.005) {
+        const cx = width / 2;
+        const cy = height / 2;
+        const dx = this.x - cx;
+        const dy = this.y - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const warpForce = Math.pow(currentFlySpeed, 1.35) * 6.5;
+        this.x += (dx / dist) * warpForce;
+        this.y += (dy / dist) * warpForce;
+        this.drawRadius = this.radius * (1 + currentFlySpeed * 1.5);
+      } else {
+        this.drawRadius = this.radius;
+      }
+
+      // Smooth wrap-around for endless constellation
+      if (this.x < -30) this.x = width + 30;
+      if (this.x > width + 30) this.x = -30;
+      if (this.y < -30) this.y = height + 30;
+      if (this.y > height + 30) this.y = -30;
 
       if (mouse.x !== null) {
         const dx = mouse.x - this.x;
@@ -156,7 +182,7 @@ function initParticleCanvas() {
 
     draw() {
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.drawRadius, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.fill();
     }
@@ -166,6 +192,8 @@ function initParticleCanvas() {
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
+
+    currentFlySpeed += (targetFlySpeed - currentFlySpeed) * 0.14;
 
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -722,9 +750,148 @@ function initHeroQuoteCycler() {
   }
 }
 
+// --- LENIS INERTIA-DAMPED ULTRA-SMOOTH SCROLL ---
+function initLenisSmoothScroll() {
+  if (typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.25,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential deceleration matching reference site
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 1.4,
+    infinite: false,
+  });
+
+  window.lenisInstance = lenis;
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Smooth anchor navigation for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          lenis.scrollTo(targetElement, { offset: -50, duration: 1.35 });
+        }
+      }
+    });
+  });
+}
+
+// --- HERO PINNED ZOOM-IN FLY-THROUGH STAGE ---
+function initHeroZoomScroll() {
+  const heroTrack = document.getElementById('hero-scroll-track');
+  const heroZoomTarget = document.getElementById('hero-zoom-target');
+  const scrollCue = document.getElementById('hero-scroll-cue');
+
+  if (!heroTrack || !heroZoomTarget) return;
+
+  // Interactive scroll cue click to skip to console
+  if (scrollCue) {
+    scrollCue.style.cursor = 'pointer';
+    scrollCue.addEventListener('click', () => {
+      const targetSec = document.getElementById('telemetry-console');
+      if (targetSec) {
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(targetSec, { offset: -40, duration: 1.4 });
+        } else {
+          targetSec.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  let currentProgress = 0;
+  let targetProgress = 0;
+
+  function calculateTargetProgress() {
+    const rect = heroTrack.getBoundingClientRect();
+    const trackHeight = heroTrack.offsetHeight - window.innerHeight;
+    if (trackHeight > 0) {
+      const raw = -rect.top / trackHeight;
+      targetProgress = Math.max(0, Math.min(1, raw));
+    } else {
+      targetProgress = 0;
+    }
+  }
+
+  function renderFrame() {
+    // Ultra-smooth exponential inertia lerp
+    currentProgress += (targetProgress - currentProgress) * 0.16;
+
+    if (Math.abs(targetProgress - currentProgress) < 0.0005) {
+      currentProgress = targetProgress;
+    }
+
+    const p = currentProgress;
+
+    // Zoom scale: 1.0 -> ~2.85x with non-linear camera expansion
+    const scale = 1 + Math.pow(p, 1.25) * 1.85;
+
+    // Upward perspective camera drift
+    const translateY = -p * 45;
+
+    // Cinematic opacity dissolve (holds solid until p > 0.12, then gently dissolves)
+    const opacity = p < 0.12 ? 1 : Math.max(0, 1 - (p - 0.12) / 0.72);
+
+    // Camera depth-of-field lens blur as content flies through screen
+    const blur = p > 0.28 ? (p - 0.28) * 10 : 0;
+
+    // Apply visual transforms
+    heroZoomTarget.style.transform = `scale(${scale.toFixed(4)}) translateY(${translateY.toFixed(2)}px)`;
+    heroZoomTarget.style.opacity = opacity.toFixed(3);
+    heroZoomTarget.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : 'none';
+
+    // Interactive scroll cue fade out
+    if (scrollCue) {
+      const cueOpacity = Math.max(0, 1 - p * 4);
+      scrollCue.style.opacity = cueOpacity.toFixed(3);
+      scrollCue.style.transform = `translateX(-50%) translateY(${(p * 30).toFixed(1)}px)`;
+      scrollCue.style.pointerEvents = cueOpacity < 0.05 ? 'none' : 'auto';
+    }
+
+    // Toggle pointer events to allow interaction with next section as it scrolls up
+    if (p > 0.55) {
+      heroZoomTarget.style.pointerEvents = 'none';
+    } else {
+      heroZoomTarget.style.pointerEvents = 'auto';
+    }
+
+    // Pass velocity to particle constellation
+    if (window.setParticleFlySpeed) {
+      window.setParticleFlySpeed(p);
+    }
+
+    requestAnimationFrame(renderFrame);
+  }
+
+  // Hook into Lenis scroll events if active, and native scroll as fallback
+  if (window.lenisInstance) {
+    window.lenisInstance.on('scroll', calculateTargetProgress);
+  }
+  window.addEventListener('scroll', calculateTargetProgress, { passive: true });
+  window.addEventListener('resize', calculateTargetProgress, { passive: true });
+
+  calculateTargetProgress();
+  currentProgress = targetProgress;
+  requestAnimationFrame(renderFrame);
+}
+
 // --- INITIALIZE ALL ON DOM READY ---
 document.addEventListener('DOMContentLoaded', () => {
+  initLenisSmoothScroll();
   initParticleCanvas();
+  initHeroZoomScroll();
   initCustomCursor();
   initTypingRotator();
   initScrollReveal();
@@ -737,3 +904,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initMobileNav();
 });
+

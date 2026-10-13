@@ -73,9 +73,11 @@
   <!-- Main Content Wrapper -->
   <main class="site-wrapper">
 
-    <!-- HERO SECTION (MINIMALIST DAY MODE) -->
-    <section class="hero-section">
-      <div class="container">
+    <!-- HERO PINNED SCROLL TRACK (SMOOTH FLY-THROUGH ZOOM-IN EFFECT) -->
+    <div class="hero-scroll-track" id="hero-scroll-track">
+      <div class="hero-sticky-frame">
+        <section class="hero-section" id="hero-zoom-target">
+          <div class="container">
         <div class="hero-grid">
 
           <!-- Left: Hero Text & Pitch -->
@@ -190,6 +192,14 @@
         </div>
       </div>
     </section>
+        
+        <!-- Interactive Fly-Through Scroll Cue -->
+        <div class="hero-scroll-cue" id="hero-scroll-cue">
+          <span class="scroll-cue-text">Scroll to Initiate Fly-Through</span>
+          <div class="scroll-cue-line"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- INTERACTIVE AI TELEMETRY CONSOLE -->
     <section class="terminal-section" id="telemetry-console">
@@ -469,6 +479,7 @@
   </div>
 
   <div class="toast-notice"></div>
+  <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
