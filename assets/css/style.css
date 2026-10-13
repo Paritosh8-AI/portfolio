@@ -687,93 +687,11 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* --- HERO PINNED SCROLL FLY-THROUGH STAGE --- */
-.hero-scroll-track {
-  position: relative;
-  height: 190vh; /* Smooth, cinematic scroll travel distance */
-  width: 100%;
-}
-
-.hero-sticky-frame {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1200px;
-}
-
-#hero-zoom-target {
-  width: 100%;
-  transform-origin: center 46%;
-  will-change: transform, opacity, filter;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Dynamic Interactive Scroll Indicator */
-.hero-scroll-cue {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  pointer-events: none;
-  z-index: 10;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.scroll-cue-text {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: var(--accent-primary-deep);
-  text-transform: uppercase;
-  background: var(--bg-glass);
-  padding: 4px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 12px rgba(28, 25, 23, 0.05);
-}
-
-.scroll-cue-line {
-  width: 2px;
-  height: 34px;
-  background: linear-gradient(to bottom, var(--accent-primary-deep), var(--accent-teal), transparent);
-  border-radius: 999px;
-  animation: scrollCuePulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes scrollCuePulse {
-  0% {
-    transform: scaleY(0.3);
-    transform-origin: top;
-    opacity: 0.2;
-  }
-  50% {
-    transform: scaleY(1);
-    transform-origin: top;
-    opacity: 1;
-  }
-  100% {
-    transform: scaleY(0.3);
-    transform-origin: bottom;
-    opacity: 0.2;
-  }
-}
-
 /* --- HERO SECTION --- */
 .hero-section {
   position: relative;
-  padding: 100px 0 40px;
-  width: 100%;
+  padding: 130px 0 70px;
+  min-height: 85vh;
   display: flex;
   align-items: center;
 }
@@ -2397,12 +2315,8 @@ textarea.form-control {
     display: block;
   }
 
-  .hero-scroll-track {
-    height: 140vh;
-  }
-
   .hero-section {
-    padding: 85px 0 35px;
+    padding: 110px 0 50px;
   }
 
   .hero-stats-row {
