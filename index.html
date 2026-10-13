@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paritosh Mukherjee | AI & ML Systems Engineer</title>
+  <meta name="description" content="Portfolio of Paritosh Mukherjee - AI/ML Systems Engineer specializing in Low-Latency Deep Learning, Causal Inference, and Agentic Telemetry Diagnostics.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Ambient Light Washes & Subtle Geometric Grid -->
+  <div class="ambient-bg">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="cyber-grid-overlay"></div>
+  </div>
+
+  <!-- Minimalist Particle Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Clean Interactive Cursor -->
+  <div class="custom-cursor-dot"></div>
+  <div class="custom-cursor-ring"></div>
+
+  <!-- Page Curtain for Smooth Navigation -->
+  <div class="page-curtain"></div>
+
+  <!-- Minimalist Floating Header (Clean - No SFX Button) -->
+  <header class="site-header">
+    <nav class="nav-pill-container" aria-label="Main Navigation">
+      <a href="index.html" class="nav-brand" id="nav-brand-logo">
+        <div class="brand-badge">P</div>
+        <div class="brand-text">Paritosh<span>.AI</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-link-item active"><a href="index.html" id="nav-link-home">Home</a></li>
+        <li class="nav-link-item"><a href="projects.html" id="nav-link-projects">Flagship Systems</a></li>
+        <li class="nav-link-item"><a href="skills.html" id="nav-link-skills">Arsenal</a></li>
+        <li class="nav-link-item"><a href="interests.html" id="nav-link-interests">Interests &amp; Lab</a></li>
+        <li class="nav-link-item"><a href="experience.html" id="nav-link-experience">Journey</a></li>
+        <li class="nav-link-item"><a href="contact.html" id="nav-link-contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- GitHub Profile Pill -->
+        <a href="https://github.com/Paritosh8-AI" target="_blank" rel="noopener noreferrer" class="github-pill-btn" id="nav-github-link">
+          <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>Paritosh8-AI</span>
+        </a>
+
+        <!-- Mobile Nav Hamburger -->
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="nav-link-item active"><a href="index.html">Home</a></div>
+    <div class="nav-link-item"><a href="projects.html">Flagship Systems</a></div>
+    <div class="nav-link-item"><a href="skills.html">Technical Arsenal</a></div>
+    <div class="nav-link-item"><a href="interests.html">Interests &amp; Lab</a></div>
+    <div class="nav-link-item"><a href="experience.html">Engineering Journey</a></div>
+    <div class="nav-link-item"><a href="contact.html">Get in Touch</a></div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main class="site-wrapper">
+
+    <!-- HERO SECTION (MINIMALIST DAY MODE) -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Left: Hero Text & Pitch -->
+          <div class="hero-content">
+            <div class="hero-greeting">
+              <span class="status-pill">
+                <span class="pulse-dot"></span>
+                Converting caffeine into sub-millisecond inference latencies
+              </span>
+              <span class="witty-pill">☕ Loss &lt; 0.01</span>
+            </div>
+
+            <h1 class="hero-title">
+              Hi, I'm
+              <span class="name-highlight">Paritosh Mukherjee</span>
+            </h1>
+
+            <div class="hero-role-typing">
+              <span class="text-mono" style="color: var(--accent-primary-deep); font-weight:700;">&gt;</span>
+              <span id="typing-text">AI / ML Systems Engineer</span>
+              <span class="typing-cursor"></span>
+            </div>
+
+            <p class="hero-description">
+              I architect <strong>production-grade deep learning systems</strong> and <strong>autonomous agentic diagnostics engines</strong>. My work bridges complex theory and real-world execution: sub-millisecond inference latencies, class-imbalance resilience, and deterministic causal reasoning across distributed telemetry streams.
+            </p>
+
+            <div class="hero-witty-quote" id="hero-witty-card" title="Click to cycle witty engineering insights">
+              <div class="quote-header-mini">
+                <span class="quote-tag">⚡ PRODUCTION WIT &bull; ML ENGINEERING</span>
+                <button type="button" class="quote-shuffle-btn" id="quote-shuffle-btn" aria-label="Shuffle Joke" title="Get another witty joke">
+                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  <span>Next Quip</span>
+                </button>
+              </div>
+              <div id="hero-quote-text">“My neural network achieved 99.8% test accuracy on epoch 1, which means it either revolutionized computer science or accidentally learned the dataset row index as a feature.”</div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="projects.html" class="btn-primary" id="hero-btn-explore">
+                <span>Explore Systems</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#telemetry-console" class="btn-secondary" id="hero-btn-terminal">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+                <span>Interactive Shell</span>
+              </a>
+              <a href="contact.html" class="btn-secondary" id="hero-btn-contact">Say Hello</a>
+            </div>
+
+            <!-- Production KPI Metrics -->
+            <div class="hero-stats-row">
+              <div class="stat-item">
+                <div class="stat-value indigo">&lt; 1.2 ms</div>
+                <div class="stat-label">Inference Latency SLA</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value cyan">99.67%</div>
+                <div class="stat-label">Ensemble ROC-AUC</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value emerald">100%</div>
+                <div class="stat-label">Deterministic Causal RCA</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Minimalist Live System Architecture Card (No fake AI images) -->
+          <div class="hero-code-card">
+            <div class="code-card-header">
+              <div class="code-card-dots">
+                <span class="dot-btn red"></span>
+                <span class="dot-btn yellow"></span>
+                <span class="dot-btn green"></span>
+              </div>
+              <div class="text-mono" style="font-size: 0.75rem; color: #64748b; font-weight:600;">
+                paritosh_system_core.py
+              </div>
+              <span class="level-badge production">STABLE NODE</span>
+            </div>
+
+            <div class="code-card-body">
+              <div><span class="code-kw">from</span> fastmcp <span class="code-kw">import</span> FastMCP</div>
+              <div><span class="code-kw">import</span> tensorflow <span class="code-kw">as</span> tf</div>
+              <div style="height: 6px;"></div>
+              <div><span class="code-comment"># Paritosh's Golden Production Rule:</span></div>
+              <div><span class="code-comment"># In theory, there is no difference between theory and production. In production, there is.</span></div>
+              <div><span class="code-kw">class</span> <span class="code-fn">AutonomousEngineer</span>:</div>
+              <div style="padding-left: 16px;"><span class="code-prop">name</span> = <span class="code-str">"Paritosh Mukherjee"</span></div>
+              <div style="padding-left: 16px;"><span class="code-prop">focus</span> = [<span class="code-str">"Deep Learning"</span>, <span class="code-str">"FastMCP"</span>, <span class="code-str">"Low Latency"</span>]</div>
+              <div style="padding-left: 16px;"><span class="code-prop">tolerance_for_blocking_io</span> = <span class="code-str">"0.0ms"</span></div>
+              <div style="height: 6px;"></div>
+              <div><span class="code-comment"># Sub-1.2ms sequence graph tracing</span></div>
+              <div style="padding-left: 16px;"><span class="code-kw">@tf.function</span></div>
+              <div style="padding-left: 16px;"><span class="code-kw">def</span> <span class="code-fn">intercept_fraud</span>(<span class="code-prop">txn_stream</span>):</div>
+              <div style="padding-left: 32px;"><span class="code-kw">return</span> crnn_attention_layer(txn_stream)</div>
+              <div style="height: 6px;"></div>
+              <div><span class="code-comment"># FastMCP autonomous causal attribution</span></div>
+              <div style="padding-left: 16px;"><span class="code-kw">async def</span> <span class="code-fn">triage_ev_fault</span>(<span class="code-prop">ocpp_events</span>):</div>
+              <div style="padding-left: 32px;"><span class="code-kw">return await</span> causal_dag.attribute(ocpp_events)</div>
+            </div>
+
+            <div class="code-card-footer">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="pulse-dot"></span>
+                <span class="text-mono" style="font-weight:600; color:#0f172a;">Live Inference Engine</span>
+              </div>
+              <span class="text-mono" style="color: #64748b;">FastMCP • Python 3.12</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE AI TELEMETRY CONSOLE -->
+    <section class="terminal-section" id="telemetry-console">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">Real-Time Autonomous Shell</div>
+          <h2 class="section-title">Interactive Telemetry &amp; Diagnostics Console</h2>
+          <p class="section-desc">Run simulated inference pipelines or test clever commands in this interactive shell. Try typing <code style="color:var(--accent-primary-deep); font-weight:700;">joke</code> for engineering humor!</p>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-controls">
+              <span class="term-btn red"></span>
+              <span class="term-btn yellow"></span>
+              <span class="term-btn green"></span>
+            </div>
+            <div class="terminal-title">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+              <span>paritosh@engine: ~/systems/production-diagnostics</span>
+            </div>
+            <div class="text-mono" style="font-size:0.75rem; color:#38bdf8;">STATUS: ONLINE</div>
+          </div>
+
+          <div class="terminal-body" id="terminal-body">
+            <div class="terminal-line"><span class="term-accent">Telemetry Diagnostics System v2.6.4 [Production Node]</span></div>
+            <div class="terminal-line">Loaded modules: <span class="term-green">FastMCP Causal Engine</span>, <span class="term-green">UPI CRNN Attention Model</span>, <span class="term-green">Clinical Ensemble</span>.</div>
+            <div class="terminal-line">Type <span class="term-accent">'help'</span> or <span class="term-yellow">'joke'</span> to explore, or click any quick chip below!</div>
+          </div>
+
+          <div class="terminal-input-row" style="padding: 0 24px 16px;">
+            <span class="prompt-prefix">paritosh@engine:~$</span>
+            <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a command (e.g. 'joke', 'agentic_rca', 'fraud_check', 'bio', 'skills')..." autocomplete="off">
+          </div>
+
+          <div class="terminal-chips">
+            <span style="font-size: 0.78rem; color: #94a3b8;">QUICK ACTIONS:</span>
+            <button class="term-chip" data-cmd="joke">💡 joke</button>
+            <button class="term-chip" data-cmd="agentic_rca">⚡ agentic_rca</button>
+            <button class="term-chip" data-cmd="fraud_check">🛡️ fraud_check</button>
+            <button class="term-chip" data-cmd="bio">👤 bio</button>
+            <button class="term-chip" data-cmd="skills">🛠️ skills</button>
+            <button class="term-chip" data-cmd="projects">🚀 projects</button>
+            <button class="term-chip" data-cmd="clear">🧹 clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAGSHIP SYSTEMS SHOWCASE -->
+    <section style="padding: 40px 0 90px;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">Flagship Deployments</div>
+          <h2 class="section-title">Core Systems Engineered</h2>
+          <p class="section-desc">Production-grade AI architectures designed for mission-critical reliability, sub-millisecond budgets, and clinical safety.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- System 1: AgenticEV RCA Studio -->
+          <article class="project-card-full reveal-on-scroll">
+            <div class="project-info-side">
+              <div class="project-badge-row">
+                <span class="project-tag-pill">Autonomous Diagnostics</span>
+                <span class="project-tag-pill purple">FastMCP (Model Context Protocol)</span>
+                <span class="project-tag-pill emerald">OCPP 1.6-J &amp; OCPI</span>
+                <span class="witty-pill">⚡ 0% Existential Dread</span>
+              </div>
+              <h3 class="project-title">AgenticEV RCA Studio</h3>
+              <p class="project-description">
+                Autonomous AI-driven Root Cause Analysis (RCA) and causal inference engine for EV fast-charging networks. Triages multi-party telemetry across distributed EVSE hardware, vehicle BMS contactors, and OCPI roaming protocols. <em>Taming EV charging tantrums so drivers don't get stranded in existential dread.</em>
+              </p>
+              <ul class="project-highlights-list">
+                <li><span class="highlight-bullet">▹</span> Resolves the 18%–25% charging failure rate across distributed hardware with deterministic attribution.</li>
+                <li><span class="highlight-bullet">▹</span> Implements <strong>FastMCP (Model Context Protocol)</strong> to empower LLM agents with autonomous telemetry diagnosis tools.</li>
+                <li><span class="highlight-bullet">▹</span> Generates automated executive Word/Excel synthesis reports with zero human triage required.</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastMCP</span>
+                <span class="tech-tag">Causal DAGs</span>
+                <span class="tech-tag">Playwright</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">OCPP 1.6-J</span>
+              </div>
+              <div class="project-cta-group">
+                <a href="projects.html#agenticev" class="btn-primary">Deep Dive &amp; Causal Demo</a>
+                <a href="https://github.com/Paritosh8-AI/AgenticEV_RCA" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>Repository</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Real production screenshots -->
+            <div class="project-media-side">
+              <div class="main-preview-frame">
+                <img src="assets/images/live_cms_network_pulse_rendered.png" alt="AgenticEV Live Telemetry Pulse">
+                <div class="preview-overlay-zoom">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                  <span>Click to Expand High-Res</span>
+                </div>
+              </div>
+              <div class="sub-previews-grid">
+                <div class="sub-preview-item active">
+                  <img src="assets/images/live_cms_network_pulse_rendered.png" alt="Live Pulse Thumbnail">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/ai_telemetry_copilot.png" alt="AI Copilot Thumbnail">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/batch_rca_studio.png" alt="Batch RCA Studio Thumbnail">
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- System 2: UPI Sentinel 2.0 -->
+          <article class="project-card-full reverse reveal-on-scroll">
+            <div class="project-info-side">
+              <div class="project-badge-row">
+                <span class="project-tag-pill">Real-Time Defense</span>
+                <span class="project-tag-pill emerald">Sub-1.2ms Latency</span>
+                <span class="project-tag-pill purple">CRNN + Attention</span>
+                <span class="witty-pill">🛡️ Faster Than Your Bank's OTP</span>
+              </div>
+              <h3 class="project-title">UPI Sentinel 2.0</h3>
+              <p class="project-description">
+                Enterprise real-time AI fraud prevention engine for instant payment rails (UPI / Faster Payments). Delivers sub-1.2 ms inference under extreme class imbalance (&lt;0.2% fraud) with multi-tier graph defense. <em>Catching syndicates faster than your bank can send an SMS OTP.</em>
+              </p>
+              <ul class="project-highlights-list">
+                <li><span class="highlight-bullet">▹</span> <strong>Sub-1.2 ms inference latency</strong> (~865+ req/s) via compiled <code>@tf.function</code> graph execution.</li>
+                <li><span class="highlight-bullet">▹</span> Sequence modeling via <strong>CRNN + Bahdanau Attention</strong> to detect burst velocities and account takeover patterns.</li>
+                <li><span class="highlight-bullet">▹</span> In-memory graph traversal for instant mule-ring and synchronized laundering detection.</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">CRNN + Attention</span>
+                <span class="tech-tag">In-Memory Graph</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Streamlit SOC</span>
+              </div>
+              <div class="project-cta-group">
+                <a href="projects.html#upisentinel" class="btn-primary">Live Fraud Scoring Simulator</a>
+                <a href="https://github.com/Paritosh8-AI/UPI-Fraud-Detection-System" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>Repository</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Real production screenshots -->
+            <div class="project-media-side">
+              <div class="main-preview-frame">
+                <img src="assets/images/upi_sentinel_dashboard.png" alt="UPI Sentinel Dashboard">
+                <div class="preview-overlay-zoom">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                  <span>Click to Expand High-Res</span>
+                </div>
+              </div>
+              <div class="sub-previews-grid">
+                <div class="sub-preview-item active">
+                  <img src="assets/images/upi_sentinel_dashboard.png" alt="Dashboard Thumbnail">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/upi_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/crnn_architecture.PNG" alt="CRNN Architecture">
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- System 3: Breast Cancer Sentinel 2.0 -->
+          <article class="project-card-full reveal-on-scroll">
+            <div class="project-info-side">
+              <div class="project-badge-row">
+                <span class="project-tag-pill">Clinical Healthcare</span>
+                <span class="project-tag-pill purple">99.67% ROC-AUC</span>
+                <span class="project-tag-pill emerald">Platt Calibration</span>
+                <span class="witty-pill">🔬 Zero Fatal False Negatives</span>
+              </div>
+              <h3 class="project-title">Breast Cancer Sentinel 2.0</h3>
+              <p class="project-description">
+                Clinical decision support system designed to minimize fatal False Negatives in Fine Needle Aspirate (FNA) cytology. Combines calibrated ensemble classifiers with Z-score biomarker explainability. <em>Because fatal false negatives are the only thing worse than null pointer exceptions in production.</em>
+              </p>
+              <ul class="project-highlights-list">
+                <li><span class="highlight-bullet">▹</span> Soft-voting clinical ensemble reaching <strong>99.67% ROC-AUC</strong> and <strong>95.24% sensitivity</strong>.</li>
+                <li><span class="highlight-bullet">▹</span> Platt Scaling probability calibration ensuring reliable diagnostic confidence levels for oncologists.</li>
+                <li><span class="highlight-bullet">▹</span> Medical-grade SOC interface featuring Z-score radar plots and automated diagnostic reports.</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">HistGBM + RF + MLP</span>
+                <span class="tech-tag">Platt Scaling</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Docker</span>
+              </div>
+              <div class="project-cta-group">
+                <a href="projects.html#cancer" class="btn-primary">View Clinical Metrics</a>
+                <a href="https://github.com/Paritosh8-AI/Breast-Cancer-Detection" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>Repository</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Real production screenshots -->
+            <div class="project-media-side">
+              <div class="main-preview-frame">
+                <img src="assets/images/cancer_sentinel_dashboard.png" alt="Breast Cancer Sentinel SOC Dashboard">
+                <div class="preview-overlay-zoom">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                  <span>Click to Expand High-Res</span>
+                </div>
+              </div>
+              <div class="sub-previews-grid">
+                <div class="sub-preview-item active">
+                  <img src="assets/images/cancer_sentinel_dashboard.png" alt="Clinical Dashboard">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/clinical_architecture_diagram.png" alt="Clinical Architecture">
+                </div>
+                <div class="sub-preview-item">
+                  <img src="assets/images/confusion_matrix.PNG" alt="Evaluation Matrix">
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <div class="brand-text" style="font-size: 1.25rem; font-weight:800;">Paritosh Mukherjee</div>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">AI / ML Systems Engineer • Low-Latency Deep Learning &amp; Agentic Telemetry</p>
+          </div>
+          <div class="social-links-row">
+            <a href="https://github.com/Paritosh8-AI" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub">
+              <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="LinkedIn">
+              <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="mailto:paritoshmukherjee8@gmail.com" class="social-icon-btn" title="Email">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/mewzicallyyours/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Instagram (@mewzicallyyours)">
+              <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 Paritosh Mukherjee. Clean code, zero hallucinations.</div>
+          <div class="text-mono" style="font-size:0.75rem;">FastMCP • TensorFlow • Sub-Millisecond Architecture</div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close Preview">&times;</button>
+      <img src="" alt="Fullscreen Preview" class="lightbox-img" id="lightbox-img">
+    </div>
+  </div>
+
+  <div class="toast-notice"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
