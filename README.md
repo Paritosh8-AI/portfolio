@@ -1,64 +1,104 @@
-# ⚡ Paritosh Mukherjee — AI & ML Systems Engineer Portfolio
+# ⚡ Paritosh Mukherjee — AI & ML Systems Engineer Portfolio (MERN Full-Stack)
 
-> **High-End, Multi-Page Portfolio Website** showcasing production-grade machine learning systems, autonomous telemetry diagnostics, low-latency deep learning architectures, audio synthesis, and clean mobility innovations.
-
----
-
-## 🌟 Architecture & Features
-
-### 1. Multi-Page Architecture
-- **[Home (`index.html`)](file:///e:/portfolio%20website/index.html)**: Kinetic hero section, interactive 3D particle constellation, live production KPI counters, and a **Real-Time Interactive Telemetry Terminal Emulator** with quick-action diagnostic chips.
-- **[Flagship Systems (`projects.html`)](file:///e:/portfolio%20website/projects.html)**: Comprehensive case studies, high-resolution architecture diagrams, real production screenshots, and two **Live Interactive Simulators**:
-  - **AgenticEV FastMCP Causal Diagnoser**: Multi-scenario causal fault attribution engine.
-  - **UPI Sentinel 2.0 Real-Time Inference Simulator**: Interactive risk sliders & sub-1.2ms latency breakdown.
-  - **Breast Cancer Sentinel 2.0**: 99.67% ROC-AUC clinical ensemble & Platt probability scaling.
-- **[Technical Arsenal (`skills.html`)](file:///e:/portfolio%20website/skills.html)**: Categorized skill matrices, animated proficiency progress tracks, and full tech stack chips.
-- **[Interests & Innovations Lab (`interests.html`)](file:///e:/portfolio%20website/interests.html)**:
-  - Electric Vehicle Mobility & Smart Grid Infrastructure (OCPP 1.6-J, OCPI 2.2, VinFast, ElectreeFi, Charge_IN).
-  - Agentic AI & Model Context Protocol (FastMCP).
-  - **Sonic Lab Synthesizer**: Fully interactive in-browser musical synthesizer (Web Audio API) with 7 playable keys (`A` through `J`), multiple waveforms, and a real-time `<canvas>` oscilloscope!
-- **[Engineering Journey (`experience.html`)](file:///e:/portfolio%20website/experience.html)**: Production deployment timeline, core engineering axioms, and live GitHub telemetry cards.
-- **[Get in Touch (`contact.html`)](file:///e:/portfolio%20website/contact.html)**: One-click email copy pill (`paritoshmukherjee8@gmail.com`), verified social media links (GitHub, LinkedIn, Instagram), response SLA indicators, and direct collaboration channels.
+> **High-Performance Full-Stack MERN Portfolio Application** showcasing production-grade machine learning systems, autonomous telemetry diagnostics, low-latency deep learning architectures, audio synthesis, and interactive MongoDB-backed peer endorsements.
 
 ---
 
-## 🎨 Aesthetics & Design System
-- **Modern Minimalist Palette**: Warm organic cream canvas (`#F2F0EA`), elevated white card surfaces (`#ffffff`), signature vibrant pink (`#FF78AC`, `#db2777`), and electric teal (`#A8D5E3`, `#0e7490`) for optimal contrast and visual punch.
-- **Glassmorphism & Micro-Interactions**: Multi-layered frosted glass floating navigation (`backdrop-filter: blur(20px)`), ambient floating light orbs, subtle cyber dot-grid overlay, and magnetic cursor hover physics.
-- **Typography**: Google Fonts `Space Grotesk` (display headings), `Plus Jakarta Sans` (body typography), and `JetBrains Mono` (telemetry code & terminal metrics).
-- **Interactive Sonic Lab Engine**: In-browser musical synthesizer (Web Audio API) with real-time waveform selection (sawtooth, square, triangle, sine) and live `<canvas>` oscilloscope.
-- **Tactile Micro-Interactions**: Custom slider inputs, interactive telemetric chips, animated skill categories, and fluid curtain page transitions.
+## 🌟 MERN Stack Architecture & Features
+
+This portfolio has been completely architected using modern **MERN (MongoDB, Express/Next.js Node API, React 19, Node.js)** concepts:
+
+### 1. Unified Full-Stack Architecture
+- **Frontend (React 19 + Next.js App Router)**: High-performance server and client components, fluid CSS transitions, interactive simulators, and zero layout shift.
+- **Backend (Node.js REST API)**: Clean serverless route handlers handling asynchronous telemetry, peer endorsements, like counter transactions, command parsing, and message ingestion.
+- **Database (MongoDB & Mongoose)**:
+  - Real Mongoose schemas for `Endorsement` and `Message`.
+  - **Zero-Setup In-Memory Resilient Fallback**: Automatically connects to MongoDB Atlas if `MONGODB_URI` is supplied in `.env.local`; seamlessly falls back to a resilient in-memory data store with instant atomic updates if no database is configured.
 
 ---
 
-## 🚀 Running Locally
+## 🚀 Live REST API Endpoints
 
-To run and preview the website locally on your machine:
+| Endpoint | Method | Description |
+| :--- | :---: | :--- |
+| `/api/endorsements` | `GET` | Retrieve peer endorsements with category filter (`badge`) & sort (`newest` / `top`). |
+| `/api/endorsements` | `POST` | Create a new peer endorsement with validation & MongoDB persistence. |
+| `/api/endorsements/[id]/like` | `POST` | Atomically increment claps / likes on an endorsement. |
+| `/api/endorsements/[id]` | `DELETE` | Moderation route to remove an endorsement. |
+| `/api/telemetry` | `GET` | Real-time Node.js server health, heap memory footprint, and ML inference SLAs. |
+| `/api/terminal` | `POST` | Execute interactive diagnostic commands (`telemetry`, `guestbook`, `agentic_rca`, `fraud_check`). |
+| `/api/contact` | `POST` | Ingest and store client collaboration inquiries and messages. |
 
+---
+
+## 📱 Pages & Interactive Components
+
+1. **[Overview (`/`)](file:///e:/portfolio%20website/app/page.jsx)**:
+   - Dynamic Hero section with rotating sub-titles, live KPI telemetry metrics, and Paritosh's systems engineering quips.
+   - **Interactive Terminal Console**: REST-backed terminal executing live diagnostics against Node.js.
+   - **Flagship Systems Preview Switcher**: Interactive thumbnail previewer for AgenticEV, UPI Sentinel, and Breast Cancer Sentinel.
+   - **Live Peer Endorsements**: MongoDB-backed engineering guestbook cards with instant like counts.
+
+2. **[Flagship Systems (`/projects`)](file:///e:/portfolio%20website/app/projects/page.jsx)**:
+   - **AgenticEV RCA Studio**: FastMCP protocol and causal directed acyclic graphs for distributed EV charging telemetry.
+   - **UPI Sentinel 2.0 Real-Time Simulator**: Interactive inference slider allowing visitors to simulate velocity bursts, travel distances, and measure sub-1.2ms inference latency.
+   - **Breast Cancer Sentinel 2.0**: Platt-calibrated 99.67% ROC-AUC clinical ensemble.
+
+3. **[Technical Arsenal (`/skills`)](file:///e:/portfolio%20website/app/skills/page.jsx)**:
+   - Real capabilities with zero arbitrary percentages.
+   - Dynamic domain filters (ML, FastMCP, Low-Latency Backend, EV Protocols, DevOps, Audio DSP).
+   - Real-time instant search bar.
+   - Verified Technology Cloud tags.
+
+4. **[Interests & Innovations Lab (`/interests`)](file:///e:/portfolio%20website/app/interests/page.jsx)**:
+   - Clean EV mobility & OCPP 1.6-J / OCPI 2.2 interactive schematics.
+   - FastMCP Causal DAG with Pearlian $do(X)$ calculus breakdown.
+   - **Sonic Lab Synthesizer**: In-browser musical synthesizer (Web Audio API) with 7 playable keys (`A` through `J`), multiple waveforms, and a real-time `<canvas>` oscilloscope!
+
+5. **[Engineering Journey (`/experience`)](file:///e:/portfolio%20website/app/experience/page.jsx)**:
+   - Production deployment timeline and core engineering axioms.
+   - Live Node.js `/api/telemetry` server status widget.
+   - Public GitHub telemetry cards from `@Paritosh8-AI`.
+
+6. **[Guestbook (`/guestbook`)](file:///e:/portfolio%20website/app/guestbook/page.jsx)**:
+   - Dedicated full-page engineering endorsements wall.
+   - Interactive submission modal with role, company, verified badge selection, and 5-star ratings.
+   - Instant like/clap counters with optimistic UI updates.
+
+7. **[Contact & Collaboration (`/contact`)](file:///e:/portfolio%20website/app/contact/page.jsx)**:
+   - One-click email copy pill (`paritoshmukherjee8@gmail.com`).
+   - Verified communication channels (GitHub, LinkedIn, Instagram).
+   - **Live Message Transmission Form**: Persists inquiries directly into MongoDB via `/api/contact`.
+
+---
+
+## 🛠️ Local Development & Deployment
+
+### 1. Running Locally
 ```powershell
-# In the portfolio directory:
-cd "e:\portfolio website"
+# Install dependencies
+npm install
 
-# Launch Python local HTTP server:
-python -m http.server 4173
+# Start Next.js development server
+npm run dev
 ```
+Visit **`http://localhost:3000`** in your browser.
 
-Then open your browser to **`http://localhost:4173/`**.
+### 2. Optional: Connecting MongoDB Atlas
+Create a `.env.local` file in the root directory:
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/portfolio?retryWrites=true&w=majority
+```
+*(If omitted, the application automatically runs in resilient in-memory mode).*
 
----
-
-## 🌐 Deploying to GitHub Pages
-
-1. Initialize Git in the project root:
+### 3. Deploying to Vercel
+Deploy seamlessly to Vercel with zero extra configuration:
+1. Push your repository to GitHub:
    ```powershell
-   git init
    git add .
-   git commit -m "Initial commit: High-end multi-page portfolio website"
+   git commit -m "feat: complete MERN stack architecture and interactive guestbook"
+   git push origin main
    ```
-2. Link to your GitHub repository:
-   ```powershell
-   git remote add origin https://github.com/Paritosh8-AI/portfolio.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. Enable **GitHub Pages** under Repository **Settings > Pages > Branch: main / root**.
+2. Import the project in the [Vercel Dashboard](https://vercel.com).
+3. (Optional) Add your `MONGODB_URI` environment variable under Project Settings.
+4. Deploy!

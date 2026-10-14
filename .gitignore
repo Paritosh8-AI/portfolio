@@ -5,6 +5,13 @@ Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
+# Node and Next.js
+node_modules/
+.next/
+out/
+build/
+.env*.local
+
 # Logs and scratch
 *.log
 scratch/

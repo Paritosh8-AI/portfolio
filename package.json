@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "> **High-End, Multi-Page Portfolio Website** showcasing production-grade machine learning systems, autonomous telemetry diagnostics, low-latency deep learning architectures, audio synthesis, and clean mobility innovations.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paritosh8-AI/portfolio.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Paritosh8-AI/portfolio/issues"
+  },
+  "homepage": "https://github.com/Paritosh8-AI/portfolio#readme",
+  "dependencies": {
+    "mongoose": "^9.11.2",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}
