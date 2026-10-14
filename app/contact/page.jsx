@@ -45,7 +45,7 @@ export default function ContactPage() {
       setSubmittedData(data.data);
       setStatusMessage({
         type: 'success',
-        text: 'Message received and stored in queue! Paritosh typically replies within 24 hours.',
+        text: 'Your message has been received! I typically reply within 24 hours.',
       });
 
       // Clear form
@@ -67,19 +67,21 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="container" style={{ paddingTop: 110, paddingBottom: 80 }}>
+    <div className="container" style={{ paddingTop: 140, paddingBottom: 80 }}>
       {/* Header */}
       <div className="section-header">
         <div className="section-subtitle">Direct Communication Line</div>
         <h1 className="section-title">Connect &amp; Initiate Collaboration</h1>
         <p className="section-desc">
-          Open for AI/ML Systems Engineering roles, production telemetry consulting, or debating why your loss function is diverging.
+          Open for AI/ML Systems Engineering roles, production telemetry consulting, or discussing causal inference in distributed systems.
         </p>
       </div>
 
-      <div style={{ maxWidth: 920, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
-        {/* Verified Channels Card */}
-        <div className="glass-card contact-info-card" style={{ padding: '32px 28px' }}>
+      {/* Two-Column Cohesive Layout */}
+      <div className="contact-split-layout" style={{ maxWidth: 1100, margin: '0 auto' }}>
+        
+        {/* Left Column: Direct Verified Channels */}
+        <div className="contact-card-surface">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
             <span className="status-pill">
               <span className="pulse-dot"></span>
@@ -88,12 +90,14 @@ export default function ContactPage() {
             <span className="witty-pill">☕ Response Time &lt; 24h</span>
           </div>
 
-          <h2 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: 10 }}>Let&apos;s Build Robust Intelligence</h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.96rem', lineHeight: 1.7, marginBottom: 24 }}>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: 10, color: 'var(--text-bright)' }}>
+            Let&apos;s Build Robust Intelligence
+          </h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: 24 }}>
             Whether you have an ambitious AI/ML systems engineering role, need low-latency deep learning architecture, or want to discuss causal inference in distributed EV and financial networks, my verified communication channels are open.
           </p>
 
-          <div className="contact-channels-grid">
+          <div className="contact-channels-grid" style={{ marginBottom: 24 }}>
             {/* Email */}
             <div className="contact-channel-item">
               <div className="channel-left">
@@ -206,51 +210,56 @@ export default function ContactPage() {
           {/* Telemetry Strip */}
           <div
             style={{
-              marginTop: 36,
-              paddingTop: 24,
+              marginTop: 'auto',
+              paddingTop: 20,
               borderTop: '1px solid var(--border-subtle)',
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: 20,
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 12,
             }}
           >
             <div>
-              <div className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
-                Response SLA
+              <div className="text-mono" style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
+                SLA
               </div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 3 }}>
-                &lt; 24 Hours Guaranteed
+              <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 2 }}>
+                &lt; 24h
               </div>
             </div>
             <div>
-              <div className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
+              <div className="text-mono" style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
                 Timezone
               </div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 3 }}>
-                IST (UTC +5:30) • Global Remote
+              <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 2 }}>
+                IST (UTC +5:30)
               </div>
             </div>
             <div>
-              <div className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
-                Primary Focus
+              <div className="text-mono" style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 700 }}>
+                Focus
               </div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 3 }}>
-                AI Systems &amp; Low-Latency Architecture
+              <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-bright)', marginTop: 2 }}>
+                AI Systems
               </div>
             </div>
           </div>
         </div>
 
-        {/* Interactive Ingestion Form (MERN Feature) */}
-        <div className="glass-card" style={{ padding: '32px 28px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        {/* Right Column: Direct Message Transmission */}
+        <div className="contact-card-surface">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
             <div>
-              <h3 style={{ fontSize: '1.35rem', marginBottom: 4 }}>Direct Message Transmission</h3>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: 4, color: 'var(--text-bright)' }}>
+                Send a Direct Message
+              </h2>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', margin: 0 }}>
-                Full-stack MERN message pipeline backed by MongoDB and Node.js REST API (<code>/api/contact</code>).
+                Dispatches directly into my verified communication queue.
               </p>
             </div>
-            <span className="level-badge production">MERN REST API</span>
+            <span className="status-pill" style={{ fontSize: '0.74rem' }}>
+              <span className="pulse-dot"></span>
+              Live Delivery
+            </span>
           </div>
 
           {statusMessage && (
@@ -268,74 +277,74 @@ export default function ContactPage() {
               {statusMessage.text}
               {submittedData && (
                 <div style={{ marginTop: 8, fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>
-                  Message Reference ID: <code>{submittedData.id}</code> (Stored in {submittedData.dbEngine} database)
+                  Message Reference ID: <code>{submittedData.id}</code>
                 </div>
               )}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
               <div>
-                <label className="guestbook-label">Your Name *</label>
+                <label className="contact-field-label">Your Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Dr. Alex Vance"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="guestbook-input"
+                  className="contact-input-field"
                 />
               </div>
 
               <div>
-                <label className="guestbook-label">Email Address *</label>
+                <label className="contact-field-label">Email Address *</label>
                 <input
                   type="email"
                   required
                   placeholder="alex@domain.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="guestbook-input"
+                  className="contact-input-field"
                 />
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
               <div>
-                <label className="guestbook-label">Inquiry Category</label>
+                <label className="contact-field-label">Category</label>
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="guestbook-input"
-                  style={{ background: '#ffffff', cursor: 'pointer' }}
+                  className="contact-input-field"
+                  style={{ cursor: 'pointer' }}
                 >
                   <option value="Engineering Role">Full-Time AI/ML Systems Role</option>
                   <option value="Telemetry Consulting">Telemetry / FastMCP Consulting</option>
                   <option value="ML Architecture">Low-Latency Architecture Advisory</option>
                   <option value="Collaboration">Open-Source Collaboration</option>
-                  <option value="General">General Technical Chat</option>
+                  <option value="General">General Technical Inquiry</option>
                 </select>
               </div>
 
               <div>
-                <label className="guestbook-label">Subject</label>
+                <label className="contact-field-label">Subject</label>
                 <input
                   type="text"
-                  placeholder="e.g. Opportunity at NextGen AI / Low-Latency Pipeline"
+                  placeholder="e.g. Opportunity at NextGen AI"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="guestbook-input"
+                  className="contact-input-field"
                 />
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <label className="guestbook-label" style={{ marginBottom: 0 }}>
+                <label className="contact-field-label" style={{ marginBottom: 0 }}>
                   Message Content *
                 </label>
-                <span className="text-mono" style={{ fontSize: '0.74rem', color: 'var(--text-dim)' }}>
+                <span className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
                   {formData.message.length} / 2000
                 </span>
               </div>
@@ -343,21 +352,42 @@ export default function ContactPage() {
                 required
                 rows={5}
                 maxLength={2000}
-                placeholder="Share context on the project, role requirements, or telemetry challenge..."
+                placeholder="Share details on your project, role specifications, or telemetry challenge..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="guestbook-input"
-                style={{ resize: 'vertical' }}
+                className="contact-input-field"
+                style={{ resize: 'vertical', minHeight: 120 }}
               />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12, marginTop: 4 }}>
-              <button type="submit" disabled={submitting} className="btn-primary" style={{ minWidth: 160 }}>
-                {submitting ? 'Transmitting...' : 'Send Message &rarr;'}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 4 }}>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn-primary"
+                style={{
+                  minWidth: 170,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                }}
+              >
+                {submitting ? (
+                  <span>Transmitting...</span>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </>
+                )}
               </button>
             </div>
           </form>
         </div>
+
       </div>
     </div>
   );
