@@ -230,10 +230,26 @@ export default function InteractiveGuestbook() {
         ) : endorsements.length === 0 ? (
           <div
             className="glass-card"
-            style={{ textAlign: 'center', padding: 40, marginTop: 24, color: 'var(--text-muted)' }}
+            style={{ textAlign: 'center', padding: '48px 24px', marginTop: 24 }}
           >
-            <h3>No entries found under this filter</h3>
-            <p style={{ marginTop: 8 }}>Be the first engineer to leave an endorsement under this category!</p>
+            <div style={{ fontSize: '2.5rem', marginBottom: 12 }}>✍️</div>
+            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: 'var(--text-bright)' }}>
+              No Reviews Yet
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', maxWidth: 440, margin: '0 auto 20px' }}>
+              Be among the first colleagues or engineering peers to leave an endorsement or review for Paritosh!
+            </p>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setIsModalOpen(true)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, margin: '0 auto' }}
+            >
+              <span>Sign Guestbook</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         ) : (
           <div className="guestbook-grid">

@@ -22,13 +22,8 @@ export async function GET(request) {
         sortOption = { likes: -1, createdAt: -1 };
       }
 
-      // Check if collection is empty; seed initial entries if empty for immediate rich UI
-      const count = await Endorsement.countDocuments();
-      if (count === 0) {
-        await Endorsement.insertMany(
-          INITIAL_ENDORSEMENTS.map(({ id, ...rest }) => rest)
-        );
-      }
+      // Exclude any legacy mock seed entries if they were saved previously
+      query.name = { $nin: ['Aarav Sharma', 'Dr. Elena Rostova', 'Kavita Nair', 'Marcus Vance'] };
 
       const endorsements = await Endorsement.find(query).sort(sortOption).lean();
 
