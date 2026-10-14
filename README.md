@@ -1,74 +1,91 @@
 # ⚡ Paritosh Mukherjee — AI & ML Systems Engineer Portfolio (MERN Full-Stack)
 
-> **High-Performance Full-Stack MERN Portfolio Application** showcasing production-grade machine learning systems, autonomous telemetry diagnostics, low-latency deep learning architectures, audio synthesis, and interactive MongoDB-backed peer endorsements.
+[![Next.js 15+](https://img.shields.io/badge/Next.js%2015+-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white)](https://mongoosejs.com/)
+[![Vercel Deployed](https://img.shields.io/badge/Vercel-Deployed-blue?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+> **Full-Stack MERN Architecture**: Production-grade machine learning systems portfolio featuring sub-1.2ms inference pipelines, FastMCP autonomous causal telemetry diagnostics, interactive MongoDB peer endorsements, and real-time Web Audio API signal processing.
 
 ---
 
-## 🌟 MERN Stack Architecture & Features
+### 📋 Recommended GitHub Repository "About" Configuration
 
-This portfolio has been completely architected using modern **MERN (MongoDB, Express/Next.js Node API, React 19, Node.js)** concepts:
+When viewing your repository on GitHub, click the **⚙️ (cog icon)** next to "About" on the right sidebar and paste these details:
 
-### 1. Unified Full-Stack Architecture
-- **Frontend (React 19 + Next.js App Router)**: High-performance server and client components, fluid CSS transitions, interactive simulators, and zero layout shift.
-- **Backend (Node.js REST API)**: Clean serverless route handlers handling asynchronous telemetry, peer endorsements, like counter transactions, command parsing, and message ingestion.
-- **Database (MongoDB & Mongoose)**:
-  - Real Mongoose schemas for `Endorsement` and `Message`.
-  - **Zero-Setup In-Memory Resilient Fallback**: Automatically connects to MongoDB Atlas if `MONGODB_URI` is supplied in `.env.local`; seamlessly falls back to a resilient in-memory data store with instant atomic updates if no database is configured.
-
----
-
-## 🚀 Live REST API Endpoints
-
-| Endpoint | Method | Description |
-| :--- | :---: | :--- |
-| `/api/endorsements` | `GET` | Retrieve peer endorsements with category filter (`badge`) & sort (`newest` / `top`). |
-| `/api/endorsements` | `POST` | Create a new peer endorsement with validation & MongoDB persistence. |
-| `/api/endorsements/[id]/like` | `POST` | Atomically increment claps / likes on an endorsement. |
-| `/api/endorsements/[id]` | `DELETE` | Moderation route to remove an endorsement. |
-| `/api/telemetry` | `GET` | Real-time Node.js server health, heap memory footprint, and ML inference SLAs. |
-| `/api/terminal` | `POST` | Execute interactive diagnostic commands (`telemetry`, `guestbook`, `agentic_rca`, `fraud_check`). |
-| `/api/contact` | `POST` | Ingest and store client collaboration inquiries and messages. |
+- **Description**:  
+  `Full-Stack MERN (MongoDB, Next.js Node API, React 19) portfolio featuring sub-1.2ms sequence modeling, FastMCP autonomous causal telemetry diagnostics, and real-time MongoDB peer endorsements.`
+- **Website**:  
+  `https://portfolio-rouge-rho-25.vercel.app`
+- **Topics / Tags**:  
+  `mern-stack`, `nextjs`, `react19`, `mongodb`, `mongoose`, `nodejs`, `fastmcp`, `machine-learning`, `deep-learning`, `low-latency`, `webaudio`
 
 ---
 
-## 📱 Pages & Interactive Components
+## 🧩 MERN Stack Concepts & Architecture Breakdown
 
-1. **[Overview (`/`)](file:///e:/portfolio%20website/app/page.jsx)**:
-   - Dynamic Hero section with rotating sub-titles, live KPI telemetry metrics, and Paritosh's systems engineering quips.
-   - **Interactive Terminal Console**: REST-backed terminal executing live diagnostics against Node.js.
-   - **Flagship Systems Preview Switcher**: Interactive thumbnail previewer for AgenticEV, UPI Sentinel, and Breast Cancer Sentinel.
-   - **Live Peer Endorsements**: MongoDB-backed engineering guestbook cards with instant like counts.
+This application is built from the ground up using core **MERN** patterns:
 
-2. **[Flagship Systems (`/projects`)](file:///e:/portfolio%20website/app/projects/page.jsx)**:
-   - **AgenticEV RCA Studio**: FastMCP protocol and causal directed acyclic graphs for distributed EV charging telemetry.
-   - **UPI Sentinel 2.0 Real-Time Simulator**: Interactive inference slider allowing visitors to simulate velocity bursts, travel distances, and measure sub-1.2ms inference latency.
-   - **Breast Cancer Sentinel 2.0**: Platt-calibrated 99.67% ROC-AUC clinical ensemble.
+### 1. 🍃 M — MongoDB & Mongoose (Data Persistence Layer)
+- **Object Data Modeling (ODM)**: Fully structured Mongoose schemas implemented in [`models/Endorsement.js`](file:///e:/portfolio%20website/models/Endorsement.js) and [`models/Message.js`](file:///e:/portfolio%20website/models/Message.js) with strict typing, enum validations, and character bounds.
+- **Connection Caching**: Production connection pool manager in [`lib/db.js`](file:///e:/portfolio%20website/lib/db.js) utilizing `global.mongoose` caching to prevent serverless connection exhaustion.
+- **Atomic Operations**: Atomic like/clap counter increments executed via database-level operators (`/api/endorsements/[id]/like`).
+- **Resilient Zero-Setup Fallback**: Automatically connects to MongoDB Atlas if `MONGODB_URI` is supplied; gracefully falls back to an in-memory data store with atomic operations when running in standalone preview mode.
 
-3. **[Technical Arsenal (`/skills`)](file:///e:/portfolio%20website/app/skills/page.jsx)**:
-   - Real capabilities with zero arbitrary percentages.
-   - Dynamic domain filters (ML, FastMCP, Low-Latency Backend, EV Protocols, DevOps, Audio DSP).
-   - Real-time instant search bar.
-   - Verified Technology Cloud tags.
+### 2. ⚡ E — Express-Equivalent Next.js Node REST API (Controller Layer)
+- **RESTful Endpoints**: Built with Next.js App Router route handlers:
+  - `GET /api/endorsements`: Supports query filtering (`?badge=...`) and sorting (`?sort=top` or `?sort=newest`).
+  - `POST /api/endorsements`: Input sanitization, validation, and database insertion.
+  - `POST /api/endorsements/[id]/like`: Route param parsing (`context.params`) and atomic like increments.
+  - `GET /api/telemetry`: Asynchronously queries Node.js runtime stats and returns live health telemetry.
+  - `POST /api/terminal`: Command parser evaluating terminal queries (`telemetry`, `guestbook`, `agentic_rca`, `fraud_check`).
+  - `POST /api/contact`: Form transmission pipeline with unique message ID generation.
+- **Serverless & Edge Ready**: Zero-overhead API handlers compiled into serverless endpoints with unified single-port routing (no CORS configuration required).
 
-4. **[Interests & Innovations Lab (`/interests`)](file:///e:/portfolio%20website/app/interests/page.jsx)**:
-   - Clean EV mobility & OCPP 1.6-J / OCPI 2.2 interactive schematics.
-   - FastMCP Causal DAG with Pearlian $do(X)$ calculus breakdown.
-   - **Sonic Lab Synthesizer**: In-browser musical synthesizer (Web Audio API) with 7 playable keys (`A` through `J`), multiple waveforms, and a real-time `<canvas>` oscilloscope!
+### 3. ⚛️ R — React 19 (Dynamic Frontend & User Experience)
+- **Server & Client Components**: Seamless separation of static server components and high-interaction client components (`'use client'`).
+- **Modern React Hooks**:
+  - `useState`, `useEffect` for asynchronous REST API lifecycle management.
+  - `useRef` for persistent canvas animation frames and Web Audio API contexts.
+  - `useCallback` for memoized audio oscillator node triggers.
+  - `useMemo` for client-side search query filtering.
+- **Interactive Web Audio API Synthesizer**: [`components/SonicLabSynth.jsx`](file:///e:/portfolio%20website/components/SonicLabSynth.jsx) with real-time waveform selection, physical keyboard event listeners (`A` through `J`), and a real-time `<canvas>` oscilloscope rendering live time-domain audio signals.
+- **Optimistic UI Updates**: Immediate client-side like counter responses with background synchronization.
 
-5. **[Engineering Journey (`/experience`)](file:///e:/portfolio%20website/app/experience/page.jsx)**:
-   - Production deployment timeline and core engineering axioms.
-   - Live Node.js `/api/telemetry` server status widget.
-   - Public GitHub telemetry cards from `@Paritosh8-AI`.
+### 4. 🟢 N — Node.js (Runtime & System Telemetry)
+- **Node.js Diagnostics**: The `/api/telemetry` route directly queries Node.js process internals:
+  - `process.memoryUsage().heapUsed` & `rss`
+  - `process.uptime()`
+  - `process.version` & `process.platform`
+- **Dynamic Script Execution**: Direct Node.js asynchronous event loop management under heavy concurrent request loads.
 
-6. **[Guestbook (`/guestbook`)](file:///e:/portfolio%20website/app/guestbook/page.jsx)**:
-   - Dedicated full-page engineering endorsements wall.
-   - Interactive submission modal with role, company, verified badge selection, and 5-star ratings.
-   - Instant like/clap counters with optimistic UI updates.
+---
 
-7. **[Contact & Collaboration (`/contact`)](file:///e:/portfolio%20website/app/contact/page.jsx)**:
-   - One-click email copy pill (`paritoshmukherjee8@gmail.com`).
-   - Verified communication channels (GitHub, LinkedIn, Instagram).
-   - **Live Message Transmission Form**: Persists inquiries directly into MongoDB via `/api/contact`.
+## 🚀 Live REST API Specification
+
+| Endpoint | Method | Status | Description |
+| :--- | :---: | :---: | :--- |
+| `/api/endorsements` | `GET` | `200 OK` | Retrieve verified endorsements with category filter & sort. |
+| `/api/endorsements` | `POST` | `201 Created` | Create new peer endorsement with MongoDB persistence. |
+| `/api/endorsements/[id]/like` | `POST` | `200 OK` | Atomic increment of claps/likes. |
+| `/api/endorsements/[id]` | `DELETE` | `200 OK` | Endorsement moderation endpoint. |
+| `/api/telemetry` | `GET` | `200 OK` | Real-time Node.js heap consumption & sub-1.2ms inference SLAs. |
+| `/api/terminal` | `POST` | `200 OK` | Interactive command line diagnostic parser. |
+| `/api/contact` | `POST` | `201 Created` | Ingest collaboration messages into MongoDB queue. |
+
+---
+
+## 📱 Pages & Features
+
+1. **[Overview (`/`)](file:///e:/portfolio%20website/app/page.jsx)**: Kinetic Hero section, KPI counters, REST terminal, Flagship Systems switcher, and live Peer Endorsements.
+2. **[Flagship Systems (`/projects`)](file:///e:/portfolio%20website/app/projects/page.jsx)**: Deep-dive blueprints for AgenticEV, UPI Sentinel (with interactive sub-1.2ms fraud simulator), and Cancer Sentinel.
+3. **[Technical Arsenal (`/skills`)](file:///e:/portfolio%20website/app/skills/page.jsx)**: Skill matrix with instant search and dynamic domain filtering without arbitrary percentage meters.
+4. **[Interests & Innovations Lab (`/interests`)](file:///e:/portfolio%20website/app/interests/page.jsx)**: Clean EV mobility schematics, FastMCP Causal DAGs, and interactive Sonic Lab synthesizer.
+5. **[Engineering Journey (`/experience`)](file:///e:/portfolio%20website/app/experience/page.jsx)**: Production timeline, engineering axioms, and live Node.js telemetry metrics.
+6. **[Guestbook (`/guestbook`)](file:///e:/portfolio%20website/app/guestbook/page.jsx)**: Dedicated peer endorsements wall where real colleagues and friends can post authenticated reviews.
+7. **[Contact & Collaboration (`/contact`)](file:///e:/portfolio%20website/app/contact/page.jsx)**: Verified direct channels (Email, GitHub, LinkedIn, Instagram) and unified message transmission form.
 
 ---
 
@@ -82,23 +99,18 @@ npm install
 # Start Next.js development server
 npm run dev
 ```
-Visit **`http://localhost:3000`** in your browser.
+Open **`http://localhost:3000`** in your browser.
 
-### 2. Optional: Connecting MongoDB Atlas
-Create a `.env.local` file in the root directory:
+### 2. Connecting MongoDB Atlas (Optional)
+Add your MongoDB connection string in `.env.local`:
 ```env
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/portfolio?retryWrites=true&w=majority
 ```
-*(If omitted, the application automatically runs in resilient in-memory mode).*
 
 ### 3. Deploying to Vercel
-Deploy seamlessly to Vercel with zero extra configuration:
-1. Push your repository to GitHub:
-   ```powershell
-   git add .
-   git commit -m "feat: complete MERN stack architecture and interactive guestbook"
-   git push origin main
-   ```
-2. Import the project in the [Vercel Dashboard](https://vercel.com).
-3. (Optional) Add your `MONGODB_URI` environment variable under Project Settings.
-4. Deploy!
+```powershell
+git add .
+git commit -m "feat: complete MERN stack architecture"
+git push origin main
+```
+Vercel automatically detects Next.js, compiles all client/server routes, and deploys the unified full-stack application.

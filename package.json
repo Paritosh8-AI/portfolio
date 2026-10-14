@@ -1,7 +1,7 @@
 {
   "name": "portfolio-website",
   "version": "1.0.0",
-  "description": "> **High-End, Multi-Page Portfolio Website** showcasing production-grade machine learning systems, autonomous telemetry diagnostics, low-latency deep learning architectures, audio synthesis, and clean mobility innovations.",
+  "description": "Full-Stack MERN (MongoDB, Next.js Node REST API, React 19, Node.js) portfolio application featuring low-latency ML sequence modeling, FastMCP autonomous causal telemetry diagnostics, and real-time MongoDB peer endorsements.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev -p 3000",
@@ -12,7 +12,20 @@
     "type": "git",
     "url": "git+https://github.com/Paritosh8-AI/portfolio.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mern-stack",
+    "nextjs",
+    "react19",
+    "mongodb",
+    "mongoose",
+    "nodejs",
+    "fastmcp",
+    "machine-learning",
+    "deep-learning",
+    "low-latency",
+    "rest-api",
+    "web-audio-api"
+  ],
   "type": "module",
   "bugs": {
     "url": "https://github.com/Paritosh8-AI/portfolio/issues"

@@ -1,0 +1,5 @@
+# Linguist overrides to accurately reflect modern MERN stack codebase
+*.js linguist-detectable=true
+*.jsx linguist-detectable=true
+public/assets/js/lenis.min.js linguist-vendored
+assets/js/lenis.min.js linguist-vendored
