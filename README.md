@@ -11,19 +11,6 @@
 
 ---
 
-### 📋 Recommended GitHub Repository "About" Configuration
-
-When viewing your repository on GitHub, click the **⚙️ (cog icon)** next to "About" on the right sidebar and paste these details:
-
-- **Description**:  
-  `Full-Stack MERN (MongoDB, Next.js Node API, React 19) portfolio featuring sub-1.2ms sequence modeling, FastMCP autonomous causal telemetry diagnostics, and real-time MongoDB peer endorsements.`
-- **Website**:  
-  `https://portfolio-rouge-rho-25.vercel.app`
-- **Topics / Tags**:  
-  `mern-stack`, `nextjs`, `react19`, `mongodb`, `mongoose`, `nodejs`, `fastmcp`, `machine-learning`, `deep-learning`, `low-latency`, `webaudio`
-
----
-
 ## 🧩 MERN Stack Concepts & Architecture Breakdown
 
 This application is built from the ground up using core **MERN** patterns:
