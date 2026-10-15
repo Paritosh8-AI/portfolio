@@ -88,6 +88,10 @@ export default function HeroSection() {
     replenishQueue();
   }, [replenishQueue]);
 
+  // Pause auto-rotation when user hovers to read, reset timer on manual cycle
+  const [isPaused, setIsPaused] = useState(false);
+  const [timerKey, setTimerKey] = useState(0);
+
   // Cycle to the next unrepeated joke from the infinite stream
   const cycleJoke = useCallback(() => {
     setJokeFade(false);
@@ -101,18 +105,24 @@ export default function HeroSection() {
       setCurrentJoke(nextJoke);
       setJokeFade(true);
 
+      // Reset auto-timer so the user gets the full duration for the new joke
+      setTimerKey((k) => k + 1);
+
       // Continuously replenish queue in the background
       replenishQueue();
     }, 180);
   }, [replenishQueue]);
 
-  // Auto-cycle joke every 9.5 seconds if user is idle
+  // Auto-cycle joke every 18 seconds if user is idle and not actively reading / hovering
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       cycleJoke();
-    }, 9500);
+    }, 18000);
+
     return () => clearInterval(interval);
-  }, [cycleJoke]);
+  }, [cycleJoke, isPaused, timerKey]);
 
   return (
     <section className="hero-section">
@@ -144,11 +154,13 @@ export default function HeroSection() {
               I architect <strong>production-grade deep learning systems</strong>, <strong>autonomous agentic diagnostics engines</strong>, and full-stack MERN cloud applications. My work bridges mathematical theory and real-world execution: sub-millisecond inference latencies, class-imbalance resilience, and deterministic causal reasoning across distributed telemetry streams.
             </p>
 
-            {/* Witty Joke Card */}
+            {/* Witty Joke Card - Pauses on hover so user can comfortably read */}
             <div
               className="hero-witty-quote"
               onClick={cycleJoke}
-              title="Click to stream infinite witty systems engineering insights"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              title="Click to stream infinite witty systems engineering insights (Paused while reading/hovering)"
             >
               <div className="quote-header-mini">
                 <span className="quote-tag">⚡ PRODUCTION WIT • {currentJoke.category}</span>
@@ -171,7 +183,7 @@ export default function HeroSection() {
                 id="hero-quote-text"
                 style={{
                   opacity: jokeFade ? 1 : 0,
-                  transition: 'opacity 0.18s ease',
+                  transition: 'opacity 0.22s ease',
                 }}
               >
                 “{currentJoke.text}”
