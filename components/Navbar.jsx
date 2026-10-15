@@ -28,9 +28,9 @@ export default function Navbar() {
                 width: 10,
                 height: 10,
                 borderRadius: '50%',
-                background: '#FF0000',
+                background: '#F2A67B',
                 display: 'inline-block',
-                boxShadow: '0 0 12px #FF0000',
+                boxShadow: '0 0 12px #F2A67B',
               }}
             />
             <span>Paritosh.ai</span>

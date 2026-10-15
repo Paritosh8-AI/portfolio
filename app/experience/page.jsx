@@ -41,7 +41,7 @@ export default function ExperiencePage() {
       >
         <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>⚖️</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#FF0000' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#F2A67B' }}>
             1. Deterministic Causality
           </h3>
           <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
@@ -51,7 +51,7 @@ export default function ExperiencePage() {
 
         <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>⚡</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#10b981' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#34d399' }}>
             2. Latency as a First-Class Citizen
           </h3>
           <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
@@ -61,7 +61,7 @@ export default function ExperiencePage() {
 
         <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>🎯</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#FF4D4D' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#FFD38B' }}>
             3. Calibrated Probabilities
           </h3>
           <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -165,7 +165,7 @@ export default function ExperiencePage() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: 16,
-              background: 'rgba(20, 2, 2, 0.75)',
+              background: 'rgba(82, 45, 96, 0.35)',
               padding: 18,
               borderRadius: 12,
               border: '1px solid var(--border-medium)',

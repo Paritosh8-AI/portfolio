@@ -252,8 +252,8 @@ export default function HeroSection() {
 
             <div
               style={{
-                background: '#140202',
-                borderTop: '1px solid #3D0000',
+                background: '#1f0e27',
+                borderTop: '1px solid #80426E',
                 padding: '12px 22px',
                 display: 'flex',
                 alignItems: 'center',

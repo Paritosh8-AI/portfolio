@@ -136,7 +136,7 @@ export default function ProjectsPage() {
             <div className="simulator-box">
               <div className="sim-header">
                 <div className="sim-title">
-                  <span style={{ color: '#FF0000' }}>⚡</span>
+                  <span style={{ color: '#FFD38B' }}>⚡</span>
                   <span>Live CRNN Attention Inference Simulator</span>
                 </div>
                 <span className="level-badge production">SUB-1.2MS ENGINE</span>
@@ -200,10 +200,10 @@ export default function ProjectsPage() {
               {simResult && (
                 <div className="sim-output-panel" style={{ marginTop: 14 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap' }}>
-                    <span style={{ fontWeight: 700, color: simResult.riskScore > 0.6 ? '#FF0000' : '#10b981' }}>
+                    <span style={{ fontWeight: 700, color: simResult.riskScore > 0.6 ? '#F2A67B' : '#34d399' }}>
                       VERDICT: {simResult.verdict}
                     </span>
-                    <span className="text-mono" style={{ color: '#FF4D4D', fontWeight: 700 }}>
+                    <span className="text-mono" style={{ color: '#FFD38B', fontWeight: 700 }}>
                       Latency: {simResult.latencyMs} ms
                     </span>
                   </div>

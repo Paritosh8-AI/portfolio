@@ -89,7 +89,7 @@ export default function TerminalConsole() {
               <span className="term-btn green" />
             </div>
             <div className="terminal-title">
-              <span style={{ color: '#FF0000' }}>⚡</span>
+              <span style={{ color: '#FFD38B' }}>⚡</span>
               <span>paritosh@node-telemetry: ~ (bash / REST)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.74rem', color: '#10b981' }}>
