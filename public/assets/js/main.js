@@ -132,7 +132,7 @@ function initParticleCanvas() {
       this.vx = (Math.random() - 0.5) * 0.35;
       this.vy = (Math.random() - 0.5) * 0.35;
       this.radius = Math.random() * 1.5 + 1;
-      this.color = Math.random() > 0.5 ? '#FF78AC' : '#A8D5E3';
+      this.color = Math.random() > 0.5 ? '#FF0000' : '#950101';
     }
 
     update() {
@@ -528,7 +528,7 @@ function initSonicLab() {
       ctx.beginPath();
       ctx.moveTo(0, canvas.height / 2);
       ctx.lineTo(canvas.width, canvas.height / 2);
-      ctx.strokeStyle = '#FF78AC';
+      ctx.strokeStyle = '#FF0000';
       ctx.lineWidth = 1.5;
       ctx.stroke();
       return;
@@ -539,7 +539,7 @@ function initSonicLab() {
     synthAudio.analyser.getByteTimeDomainData(dataArray);
 
     ctx.lineWidth = 2.2;
-    ctx.strokeStyle = '#A8D5E3';
+    ctx.strokeStyle = '#FF0000';
     ctx.beginPath();
 
     const sliceWidth = canvas.width / bufferLength;
