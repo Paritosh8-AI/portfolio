@@ -165,10 +165,10 @@ export default function ExperiencePage() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: 16,
-              background: 'rgba(255, 255, 255, 0.6)',
+              background: 'rgba(20, 2, 2, 0.75)',
               padding: 18,
               borderRadius: 12,
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid var(--border-medium)',
             }}
           >
             <div>
