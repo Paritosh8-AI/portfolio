@@ -95,7 +95,7 @@ export default function HeroSection() {
               title="Click to cycle witty systems engineering insights"
             >
               <div className="quote-header-mini">
-                <span className="quote-tag">⚡ PRODUCTION WIT &bull; ML ENGINEERING</span>
+                <span className="quote-tag">⚡ PRODUCTION WIT • ML ENGINEERING</span>
                 <button
                   type="button"
                   className="quote-shuffle-btn"

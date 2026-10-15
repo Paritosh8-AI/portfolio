@@ -125,7 +125,7 @@ export default function ContactPage() {
                   className="copy-pill-btn"
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 >
-                  Send &rarr;
+                  Send →
                 </a>
               </div>
             </div>
@@ -153,8 +153,8 @@ export default function ContactPage() {
                   <p>github.com/Paritosh8-AI</p>
                 </div>
               </div>
-              <span className="text-mono" style={{ fontSize: '0.8rem', color: 'var(--accent-primary-deep)', fontWeight: 700 }}>
-                &nearr; Visit
+              <span className="text-mono" style={{ fontSize: '0.8rem', color: 'var(--accent-primary-deep)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                Visit ↗
               </span>
             </a>
 
@@ -177,8 +177,8 @@ export default function ContactPage() {
                   <p>Connect with Paritosh Mukherjee</p>
                 </div>
               </div>
-              <span className="text-mono" style={{ fontSize: '0.8rem', color: 'var(--accent-primary-deep)', fontWeight: 700 }}>
-                &nearr; Connect
+              <span className="text-mono" style={{ fontSize: '0.8rem', color: 'var(--accent-primary-deep)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                Connect ↗
               </span>
             </a>
 
@@ -198,11 +198,11 @@ export default function ContactPage() {
                 </div>
                 <div className="channel-text">
                   <h4>Instagram</h4>
-                  <p>@mewzicallyyours &bull; Audio synthesis, music &amp; visuals</p>
+                  <p>@mewzicallyyours • Audio synthesis, music &amp; visuals</p>
                 </div>
               </div>
-              <span className="text-mono" style={{ fontSize: '0.8rem', color: '#db2777', fontWeight: 700 }}>
-                &nearr; Connect
+              <span className="text-mono" style={{ fontSize: '0.8rem', color: '#db2777', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                Connect ↗
               </span>
             </a>
           </div>

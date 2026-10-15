@@ -21,7 +21,7 @@ export default function InterestsPage() {
             <div className="schematic-header">
               <div className="schematic-title">
                 <span className="status-pulse-dot"></span>
-                <span>OCPP 1.6-J &bull; Central System Handshake</span>
+                <span>OCPP 1.6-J • Central System Handshake</span>
               </div>
               <span className="schematic-badge emerald">WSS / JSON</span>
             </div>
@@ -30,12 +30,12 @@ export default function InterestsPage() {
               <div className="schematic-node">
                 <span className="node-tag">EVSE #8042</span>
                 <span className="node-detail">CCS2 Dual Gun</span>
-                <span className="node-metric">400V &bull; 120kW DC</span>
+                <span className="node-metric">400V • 120kW DC</span>
               </div>
               <div className="schematic-arrow-col">
                 <span className="arrow-label">Authorize.req</span>
-                <div className="arrow-line">&rarr;</div>
-                <div className="arrow-line reverse">&larr;</div>
+                <div className="arrow-line">→</div>
+                <div className="arrow-line reverse">←</div>
                 <span className="arrow-label">Status: Accepted</span>
               </div>
               <div className="schematic-node highlight">
@@ -100,8 +100,8 @@ export default function InterestsPage() {
               </div>
               <div className="schematic-arrow-col">
                 <span className="arrow-label">@mcp.tool triage</span>
-                <div className="arrow-line">&rarr;</div>
-                <div className="arrow-line reverse">&larr;</div>
+                <div className="arrow-line">→</div>
+                <div className="arrow-line reverse">←</div>
                 <span className="arrow-label">P(Fail | do(BMS))</span>
               </div>
               <div className="schematic-node highlight-purple">
@@ -154,7 +154,7 @@ export default function InterestsPage() {
               <div className="schematic-header">
                 <div className="schematic-title">
                   <span className="status-pulse-dot cyan"></span>
-                  <span>Audio DSP &bull; Acoustics Spectrum Rack</span>
+                  <span>Audio DSP • Acoustics Spectrum Rack</span>
                 </div>
                 <span className="schematic-badge cyan">FL STUDIO PRODUCER</span>
               </div>
@@ -209,7 +209,7 @@ export default function InterestsPage() {
                   >
                     📸 @mewzicallyyours
                   </a>
-                  <span className="witty-pill">🎵 Math &rarr; Music</span>
+                  <span className="witty-pill">🎵 Math → Music</span>
                 </div>
               </div>
 
