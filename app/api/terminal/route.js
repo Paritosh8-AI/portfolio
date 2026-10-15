@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase, inMemoryStore } from '@/lib/db';
 import Endorsement from '@/models/Endorsement';
-import { getNextUniqueJoke } from '@/lib/witEngine';
+import { generateFreshInfiniteJoke } from '@/lib/infiniteWitEngine';
 
 export async function POST(request) {
   try {
@@ -30,7 +30,7 @@ export async function POST(request) {
     }
 
     if (cmd === 'joke' || cmd === 'pun') {
-      const joke = getNextUniqueJoke();
+      const joke = generateFreshInfiniteJoke();
       return NextResponse.json({
         output: `<span class="term-yellow">⚡ [${joke.category}]: ${joke.text}</span>`,
       });

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getNextUniqueJoke, hashJoke, CURATED_WIT } from '@/lib/witEngine';
+import { generateFreshInfiniteJoke, hashJokeText, INITIAL_JOKE } from '@/lib/infiniteWitEngine';
 
 export async function GET(request) {
   try {
@@ -16,7 +16,7 @@ export async function GET(request) {
         if (aiJoke && aiJoke.text) {
           return NextResponse.json({
             joke: aiJoke,
-            hash: hashJoke(aiJoke),
+            hash: hashJokeText(aiJoke.category + aiJoke.text),
             source: 'gemini',
           });
         }
@@ -25,18 +25,18 @@ export async function GET(request) {
       }
     }
 
-    // Engine generation (unlimited combinatorial + curated pool)
-    const joke = getNextUniqueJoke(seenSet);
+    // Engine generation (infinite procedural synthesis - NO CYCLING)
+    const joke = generateFreshInfiniteJoke(seenSet);
     return NextResponse.json({
       joke,
-      hash: hashJoke(joke),
+      hash: hashJokeText(joke.category + joke.text),
       source: 'engine',
     });
   } catch (error) {
     return NextResponse.json(
       {
-        joke: CURATED_WIT[0],
-        hash: hashJoke(CURATED_WIT[0]),
+        joke: INITIAL_JOKE,
+        hash: hashJokeText(INITIAL_JOKE.category + INITIAL_JOKE.text),
         source: 'fallback',
       },
       { status: 200 }
@@ -50,15 +50,15 @@ export async function POST(request) {
     const excludeList = Array.isArray(body.exclude) ? body.exclude : [];
     const seenSet = new Set(excludeList);
 
-    const joke = getNextUniqueJoke(seenSet);
+    const joke = generateFreshInfiniteJoke(seenSet);
     return NextResponse.json({
       joke,
-      hash: hashJoke(joke),
+      hash: hashJokeText(joke.category + joke.text),
       source: 'engine',
     });
   } catch (error) {
     return NextResponse.json(
-      { joke: CURATED_WIT[0], hash: hashJoke(CURATED_WIT[0]), source: 'fallback' },
+      { joke: INITIAL_JOKE, hash: hashJokeText(INITIAL_JOKE.category + INITIAL_JOKE.text), source: 'fallback' },
       { status: 200 }
     );
   }
