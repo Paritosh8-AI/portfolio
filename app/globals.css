@@ -1851,40 +1851,189 @@ h6 {
   font-weight: 600;
 }
 
-/* --- INTERESTS & LABS PAGE --- */
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-}
-
-.interest-card {
-  padding: 34px;
+/* --- INTERESTS & CREATIVE HORIZONS PAGE --- */
+.interests-stack {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 48px;
 }
 
-.interest-card h3 {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: #FFFFFF;
-}
-
-.interest-card p {
-  font-size: 0.98rem;
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-
-/* Playable Sonic Lab Synth Pad */
-.sonic-lab-container {
-  background: #170b1d;
+/* 1. Flagship Sonic Lab Studio Card */
+.sonic-studio-card {
+  background: var(--bg-card);
   border: 1px solid var(--border-medium);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  margin-top: 16px;
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-xl);
+  padding: 44px 40px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s var(--ease-spring);
+}
+
+.sonic-studio-card:hover {
+  border-color: #F2A67B;
+  box-shadow: var(--shadow-hover);
+}
+
+.sonic-studio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sonic-studio-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .sonic-studio-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Playable Concert Piano Keyboard Frame */
+.piano-keyboard-case {
+  background: linear-gradient(180deg, #1f0e27 0%, #120917 100%);
+  border: 1.5px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 18px 16px 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.piano-felt-strip {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #80426E 0%, #F2A67B 50%, #80426E 100%);
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.piano-keys-surface {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  display: flex;
+  user-select: none;
+}
+
+/* White Keys (Ivory Porcelain) */
+.piano-white-key {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF5EE 85%, #EFE8DD 100%);
+  border: 1px solid #C8B8CE;
+  border-right: none;
+  border-radius: 0 0 7px 7px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.12s var(--ease-spring);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25), inset 0 -3px 4px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+.piano-white-key:last-child {
+  border-right: 1px solid #C8B8CE;
+}
+
+.piano-white-key:hover {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF9 85%, #F5EDE2 100%);
+  box-shadow: 0 6px 10px rgba(242, 166, 123, 0.35);
+}
+
+.piano-white-key:active,
+.piano-white-key.active {
+  background: linear-gradient(180deg, #FFF9F2 0%, #FFECD6 60%, #F2A67B 100%);
+  transform: translateY(3px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 18px rgba(242, 166, 123, 0.6);
+  border-color: #F2A67B;
+}
+
+.piano-white-key .note-label {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #271432;
+  line-height: 1.1;
+}
+
+.piano-white-key .shortcut-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #80426E;
+  margin-top: 3px;
+  background: rgba(128, 66, 110, 0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Black Keys (Ebony Plum) */
+.piano-black-key {
+  position: absolute;
+  top: 0;
+  width: 7.6%;
+  height: 60%;
+  background: linear-gradient(180deg, #2D1437 0%, #1A0B21 80%, #0E0513 100%);
+  border: 1.5px solid #80426E;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 8px;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.12s var(--ease-spring);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.piano-black-key:hover {
+  background: linear-gradient(180deg, #3D1C4A 0%, #261131 80%, #14071A 100%);
+  border-color: #F2A67B;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9), 0 0 10px rgba(242, 166, 123, 0.3);
+}
+
+.piano-black-key:active,
+.piano-black-key.active {
+  background: linear-gradient(180deg, #80426E 0%, #522D60 50%, #F2A67B 100%);
+  transform: translateY(2px);
+  border-color: #FFD38B;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 18px rgba(255, 211, 139, 0.7);
+}
+
+.piano-black-key .note-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #FFD38B;
+  line-height: 1;
+}
+
+.piano-black-key .shortcut-badge {
+  font-family: var(--font-mono);
+  font-size: 0.60rem;
+  font-weight: 700;
+  color: #FDF6EC;
+  margin-top: 2px;
+  background: rgba(242, 166, 123, 0.25);
+  padding: 1px 4px;
+  border-radius: 3px;
 }
 
 .oscilloscope-canvas {
@@ -1897,61 +2046,42 @@ h6 {
   display: block;
 }
 
-.synth-keys-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.synth-key {
-  height: 75px;
-  background: #1e1026;
+/* 2. Wide Horizontal Engineering Showcase Cards */
+.interest-showcase-card {
+  background: var(--bg-card);
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  color: var(--text-main);
-  font-family: var(--font-mono);
-  font-size: 0.80rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 8px;
-  transition: all 0.15s;
-  user-select: none;
+  border-radius: var(--radius-xl);
+  padding: 44px 40px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s var(--ease-spring);
 }
 
-.synth-key:hover {
-  background: rgba(128, 66, 110, 0.35);
-  color: #FFD38B;
+.interest-showcase-card:hover {
   border-color: #F2A67B;
+  box-shadow: var(--shadow-hover);
 }
 
-.synth-key:active,
-.synth-key.playing {
-  background: linear-gradient(135deg, #F2A67B 0%, #FFD38B 100%);
-  color: #170B1D;
-  border-color: #FFD38B;
-  box-shadow: 0 0 16px rgba(242, 166, 123, 0.6);
-  transform: translateY(2px);
-}
-
-.synth-controls-row {
-  display: flex;
+.interest-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 44px;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 
-.synth-knob-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
+.interest-showcase-grid.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+@media (max-width: 960px) {
+  .interest-showcase-grid,
+  .interest-showcase-grid.reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .sonic-studio-card,
+  .interest-showcase-card {
+    padding: 32px 24px;
+  }
 }
 
 /* --- EXPERIENCE & JOURNEY TIMELINE --- */
