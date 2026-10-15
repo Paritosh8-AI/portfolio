@@ -36,115 +36,162 @@ export default function SonicLabSynth({ onFrequencyChange }) {
   const [activeNote, setActiveNote] = useState(null);
   const [currentFreq, setCurrentFreq] = useState(null);
   const [isAudioReady, setIsAudioReady] = useState(false);
-  const [volume, setVolume] = useState(0.28);
+  const [volume, setVolume] = useState(0.55);
 
   const audioCtxRef = useRef(null);
+  const masterGainRef = useRef(null);
   const analyserRef = useRef(null);
   const canvasRef = useRef(null);
   const animFrameIdRef = useRef(null);
   const activeKeysPressedRef = useRef(new Set());
 
-  // Initialize Web Audio API context safely upon user interaction
+  // Bulletproof AudioContext retriever with clean master bus architecture
   const getAudioContext = useCallback(() => {
     if (!audioCtxRef.current) {
-      const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtxClass) {
-        const ctx = new AudioCtxClass();
-        const analyser = ctx.createAnalyser();
-        analyser.fftSize = 512;
-        analyser.smoothingTimeConstant = 0.85;
-        audioCtxRef.current = ctx;
-        analyserRef.current = analyser;
+      try {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtxClass) {
+          const ctx = new AudioCtxClass();
+          const masterGain = ctx.createGain();
+          masterGain.gain.setValueAtTime(0.55, ctx.currentTime);
+
+          const analyser = ctx.createAnalyser();
+          analyser.fftSize = 256;
+          analyser.smoothingTimeConstant = 0.8;
+
+          // Route: Master Gain -> Speakers & Analyser
+          masterGain.connect(ctx.destination);
+          masterGain.connect(analyser);
+
+          audioCtxRef.current = ctx;
+          masterGainRef.current = masterGain;
+          analyserRef.current = analyser;
+        }
+      } catch (e) {
+        console.warn('AudioContext init error:', e);
       }
-    }
-    if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
     }
     return audioCtxRef.current;
   }, []);
 
-  // Synthesize and play note with anti-pop envelope
+  // Sync master volume dynamically
+  useEffect(() => {
+    if (masterGainRef.current && audioCtxRef.current) {
+      try {
+        const now = audioCtxRef.current.currentTime;
+        masterGainRef.current.gain.setTargetAtTime(volume, now, 0.02);
+      } catch (e) {
+        // Fallback
+      }
+    }
+  }, [volume]);
+
+  // Play synthesized note with rich dual harmonics for maximum presence on laptop/phone speakers
   const playNote = useCallback((freq, noteName) => {
     const ctx = getAudioContext();
     if (!ctx) return;
 
-    setIsAudioReady(true);
     setActiveNote(noteName);
     setCurrentFreq(freq);
+    setIsAudioReady(true);
     if (onFrequencyChange) {
       onFrequencyChange(freq, noteName);
     }
 
-    try {
-      const now = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      const filter = ctx.createBiquadFilter();
+    const triggerSound = () => {
+      try {
+        const now = ctx.currentTime;
+        const master = masterGainRef.current;
+        if (!master) return;
 
-      // Configure preset sound design
-      if (preset === 'rhodes') {
-        osc.type = 'triangle';
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1800, now);
-        filter.Q.setValueAtTime(1.8, now);
+        // Note gain envelope
+        const noteGain = ctx.createGain();
+        noteGain.gain.setValueAtTime(0.001, now);
+        noteGain.gain.linearRampToValueAtTime(1.0, now + 0.015);
+        noteGain.gain.setTargetAtTime(0.00001, now + 0.025, 0.32);
 
-        // Smooth anti-pop envelope: 15ms linear attack, musical exponential decay
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(volume, now + 0.015);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
-        osc.stop(now + 0.8);
-      } else if (preset === 'synth') {
-        osc.type = 'sawtooth';
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(2400, now);
-        filter.Q.setValueAtTime(3.5, now);
+        // Biquad Filter
+        const filter = ctx.createBiquadFilter();
 
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(volume * 0.85, now + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
-        osc.stop(now + 0.65);
-      } else if (preset === 'chime') {
-        osc.type = 'sine';
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(3600, now);
+        // Dual oscillators: Fundamental + Harmonic overtone
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const osc2Gain = ctx.createGain();
 
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(volume * 1.1, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.95);
-        osc.stop(now + 1.0);
-      } else {
-        // Ambient pad
-        osc.type = 'square';
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(950, now);
-        filter.Q.setValueAtTime(2.2, now);
+        osc1.frequency.setValueAtTime(freq, now);
 
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(volume * 0.75, now + 0.035);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
-        osc.stop(now + 0.75);
+        if (preset === 'synth') {
+          // Retro 80s analog synth lead: Sawtooth + detuned square
+          osc1.type = 'sawtooth';
+          osc2.type = 'square';
+          osc2.frequency.setValueAtTime(freq * 1.004, now); // subtle fat detune
+          osc2Gain.gain.setValueAtTime(0.35, now);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(3200, now);
+          filter.Q.setValueAtTime(2.5, now);
+        } else if (preset === 'chime') {
+          // Crystal music box chime: Pure sine fundamental + octave 2 harmonic
+          osc1.type = 'sine';
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(freq * 3, now); // 5th harmonic bell chime
+          osc2Gain.gain.setValueAtTime(0.30, now);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(4800, now);
+          filter.Q.setValueAtTime(1.0, now);
+        } else if (preset === 'pad') {
+          // Ambient soft warm pad
+          osc1.type = 'triangle';
+          osc2.type = 'square';
+          osc2.frequency.setValueAtTime(freq, now);
+          osc2Gain.gain.setValueAtTime(0.18, now);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1600, now);
+          filter.Q.setValueAtTime(1.5, now);
+        } else {
+          // Default 'rhodes' - Fender Rhodes Mark I E-Piano
+          // Triangle fundamental + 2nd harmonic octave bell presence
+          osc1.type = 'triangle';
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(freq * 2, now); // Octave chime
+          osc2Gain.gain.setValueAtTime(0.38, now);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(2600, now);
+          filter.Q.setValueAtTime(1.8, now);
+        }
+
+        // Routing: [osc1 + (osc2 -> osc2Gain)] -> filter -> noteGain -> masterGain -> [speakers + analyser]
+        osc1.connect(filter);
+        osc2.connect(osc2Gain);
+        osc2Gain.connect(filter);
+
+        filter.connect(noteGain);
+        noteGain.connect(master);
+
+        // Start & scheduled stop
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 1.4);
+        osc2.stop(now + 1.4);
+      } catch (err) {
+        console.error('WebAudio voice error:', err);
       }
+    };
 
-      osc.frequency.setValueAtTime(freq, now);
-      osc.connect(filter);
-      filter.connect(gain);
-
-      if (analyserRef.current) {
-        gain.connect(analyserRef.current);
-        analyserRef.current.connect(ctx.destination);
-      } else {
-        gain.connect(ctx.destination);
-      }
-
-      osc.start(now);
-
-      setTimeout(() => {
-        setActiveNote((prev) => (prev === noteName ? null : prev));
-      }, 300);
-    } catch (e) {
-      console.warn('WebAudio playback notice:', e);
+    // Unlock suspended browser AudioContext
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(triggerSound).catch(triggerSound);
+    } else {
+      triggerSound();
     }
-  }, [getAudioContext, onFrequencyChange, preset, volume]);
+
+    setTimeout(() => {
+      setActiveNote((prev) => (prev === noteName ? null : prev));
+    }, 280);
+  }, [getAudioContext, onFrequencyChange, preset]);
 
   // Global physical keyboard listener (A, W, S, E, D, F, T, G, Y, H, U, J, K)
   useEffect(() => {
@@ -188,11 +235,11 @@ export default function SonicLabSynth({ onFrequencyChange }) {
       const width = canvas.width;
       const height = canvas.height;
 
-      // Dark canvas display
+      // Dark display background
       ctx.fillStyle = '#120917';
       ctx.fillRect(0, 0, width, height);
 
-      // Delicate berry grid lines
+      // Subtle berry grid lines
       ctx.lineWidth = 1;
       ctx.strokeStyle = 'rgba(128, 66, 110, 0.28)';
       ctx.beginPath();
@@ -223,7 +270,7 @@ export default function SonicLabSynth({ onFrequencyChange }) {
 
       if (!isSignalActive) {
         // Draw resting gentle ambient wave line
-        phase += 0.03;
+        phase += 0.035;
         ctx.lineWidth = 1.8;
         ctx.strokeStyle = 'rgba(242, 166, 123, 0.45)';
         ctx.beginPath();
@@ -237,7 +284,7 @@ export default function SonicLabSynth({ onFrequencyChange }) {
         return;
       }
 
-      // Draw active synthesized laser waveform
+      // Draw active synthesized golden laser waveform
       ctx.lineWidth = 2.4;
       ctx.strokeStyle = '#FFD38B';
       ctx.shadowBlur = 12;
@@ -275,7 +322,7 @@ export default function SonicLabSynth({ onFrequencyChange }) {
 
   return (
     <div className="piano-studio-component">
-      {/* Oscilloscope Rack Screen */}
+      {/* Oscilloscope Screen */}
       <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border-medium)', marginBottom: 18 }}>
         <canvas ref={canvasRef} width={640} height={92} className="oscilloscope-canvas" style={{ margin: 0 }} />
 
@@ -295,7 +342,7 @@ export default function SonicLabSynth({ onFrequencyChange }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span className="status-pulse-dot" style={{ width: 6, height: 6 }} />
             <span className="text-mono" style={{ fontSize: '0.72rem', color: '#FFD38B', fontWeight: 700 }}>
-              {isAudioReady ? (currentFreq ? `${currentFreq.toFixed(1)} Hz • ${activeNote}` : 'DSP ACTIVE (IDLE)') : 'READY TO PLAY'}
+              {isAudioReady ? (currentFreq ? `${currentFreq.toFixed(1)} Hz • ${activeNote}` : 'AUDIO ENGINE ACTIVE') : 'CLICK KEY TO ENGAGE AUDIO'}
             </span>
           </div>
           <span className="text-mono" style={{ fontSize: '0.68rem', color: '#D1BED6', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -346,19 +393,32 @@ export default function SonicLabSynth({ onFrequencyChange }) {
           </select>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
-            Vol:
-          </span>
-          <input
-            type="range"
-            min="0.05"
-            max="0.5"
-            step="0.01"
-            value={volume}
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
-            style={{ width: 80, accentColor: '#F2A67B', cursor: 'pointer' }}
-          />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <button
+            type="button"
+            onClick={() => playNote(440.00, 'A4')}
+            className="term-chip"
+            style={{ padding: '4px 10px', fontSize: '0.72rem', background: 'rgba(242, 166, 123, 0.18)', color: '#FFD38B', borderColor: '#F2A67B' }}
+            title="Click to test sound (A4 440Hz)"
+          >
+            🔊 Test Tone (440Hz)
+          </button>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span className="text-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
+              Vol:
+            </span>
+            <input
+              type="range"
+              min="0.1"
+              max="0.8"
+              step="0.02"
+              value={volume}
+              onChange={(e) => setVolume(parseFloat(e.target.value))}
+              style={{ width: 80, accentColor: '#F2A67B', cursor: 'pointer' }}
+              title={`Master Volume: ${Math.round(volume * 100)}%`}
+            />
+          </div>
         </div>
       </div>
 
