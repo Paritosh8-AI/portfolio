@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase, inMemoryStore } from '@/lib/db';
 import Message from '@/models/Message';
+import { sendContactNotification } from '@/lib/mailer';
 
 export async function POST(request) {
   try {
@@ -63,6 +64,16 @@ export async function POST(request) {
       });
     }
 
+    // Dispatch email notification to paritoshmukherjee8@gmail.com
+    const emailDispatch = await sendContactNotification({
+      name: savedMessage.name,
+      email: savedMessage.email,
+      subject: savedMessage.subject,
+      category: savedMessage.category,
+      message: savedMessage.message,
+      id: savedMessage._id || savedMessage.id,
+    });
+
     return NextResponse.json(
       {
         success: true,
@@ -73,6 +84,8 @@ export async function POST(request) {
           subject: savedMessage.subject,
           createdAt: savedMessage.createdAt,
           dbEngine: dbStatus.type,
+          emailDispatched: emailDispatch.success,
+          dispatchProvider: emailDispatch.provider,
         },
       },
       { status: 201 }

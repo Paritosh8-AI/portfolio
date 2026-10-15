@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase, inMemoryStore } from '@/lib/db';
 import Endorsement from '@/models/Endorsement';
+import Message from '@/models/Message';
 import { generateFreshInfiniteJoke } from '@/lib/infiniteWitEngine';
 
 export async function POST(request) {
@@ -16,15 +17,55 @@ export async function POST(request) {
       return NextResponse.json({
         output: `
 <span class="term-accent">Available Diagnostic &amp; MERN Commands:</span>
-  • <span class="term-green">guestbook</span>     - Queries MongoDB for verified engineer endorsements
-  • <span class="term-green">telemetry</span>     - Live Node.js runtime &amp; DB connection health
-  • <span class="term-green">joke</span>          - Prints a witty, high-IQ AI &amp; systems engineering joke
-  • <span class="term-green">bio</span>           - Displays Paritosh's engineering philosophy
-  • <span class="term-green">skills</span>        - Prints the technical arsenal
-  • <span class="term-green">projects</span>      - Lists flagship production systems
-  • <span class="term-green">agentic_rca</span>   - Executes simulated FastMCP EV telemetry inference
-  • <span class="term-green">fraud_check</span>   - Executes sub-1.2ms UPI CRNN Attention score calculation
-  • <span class="term-green">clear</span>         - Clears the terminal screen
+  • <span class="term-green">inbox</span>          - Reads recent direct messages ingested from /contact
+  • <span class="term-green">guestbook</span>      - Queries MongoDB for verified engineer endorsements
+  • <span class="term-green">telemetry</span>      - Live Node.js runtime &amp; DB connection health
+  • <span class="term-green">joke</span>           - Prints a witty, high-IQ AI &amp; systems engineering joke
+  • <span class="term-green">bio</span>            - Displays Paritosh's engineering philosophy
+  • <span class="term-green">skills</span>         - Prints the technical arsenal
+  • <span class="term-green">projects</span>       - Lists flagship production systems
+  • <span class="term-green">agentic_rca</span>    - Executes simulated FastMCP EV telemetry inference
+  • <span class="term-green">fraud_check</span>    - Executes sub-1.2ms UPI CRNN Attention score calculation
+  • <span class="term-green">clear</span>          - Clears the terminal screen
+`,
+      });
+    }
+
+    if (cmd === 'inbox' || cmd.startsWith('inbox') || cmd === 'messages') {
+      const dbStatus = await connectToDatabase();
+      let msgs = [];
+      if (dbStatus.isConnected) {
+        msgs = await Message.find().sort({ createdAt: -1 }).limit(10).lean();
+      } else {
+        msgs = inMemoryStore.getMessages().slice(0, 10);
+      }
+
+      if (!msgs || msgs.length === 0) {
+        return NextResponse.json({
+          output: `
+<span class="term-accent">[DIRECT MESSAGES INBOX]</span>
+<span class="term-muted">No messages currently in the queue.</span>
+<span class="term-green">✓ Ready to ingest inquiries from the /contact form or paritoshmukherjee8@gmail.com</span>
+`,
+        });
+      }
+
+      const listHtml = msgs
+        .map(
+          (m, idx) => `
+<span class="term-yellow">#${idx + 1} [${m._id || m.id}]</span> - <span class="term-muted">${new Date(m.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST</span>
+  • <span class="term-pink">From:</span> ${m.name} &lt;<span class="term-green">${m.email}</span>&gt;
+  • <span class="term-accent">Subject:</span> [${m.category || 'General'}] ${m.subject || 'Direct Message'}
+  • <span class="term-cyan">Message:</span> “${m.message}”
+`
+        )
+        .join('');
+
+      return NextResponse.json({
+        output: `
+<span class="term-accent">[DIRECT MESSAGES INBOX - ${msgs.length} RECENT TRANSMISSIONS]</span>
+${listHtml}
+<span class="term-green">✓ Source: ${dbStatus.isConnected ? 'MongoDB Atlas (Live Database)' : 'Resilient In-Memory Store'}. Email notification target: paritoshmukherjee8@gmail.com</span>
 `,
       });
     }
