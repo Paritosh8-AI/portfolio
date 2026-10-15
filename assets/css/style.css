@@ -2080,7 +2080,6 @@ html.lenis body {
 
 .channel-text {
   min-width: 0;
-  word-break: break-word;
 }
 
 .channel-text h4 {
@@ -2089,11 +2088,11 @@ html.lenis body {
 }
 
 .channel-text p {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
-  word-break: break-all;
-  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .copy-pill-btn {
