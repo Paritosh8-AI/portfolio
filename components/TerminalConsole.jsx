@@ -59,6 +59,7 @@ export default function TerminalConsole() {
   };
 
   const chips = [
+    { label: 'inbox', cmd: 'inbox' },
     { label: 'joke', cmd: 'joke' },
     { label: 'guestbook', cmd: 'guestbook' },
     { label: 'telemetry', cmd: 'telemetry' },
@@ -69,7 +70,7 @@ export default function TerminalConsole() {
   ];
 
   return (
-    <section className="terminal-section" id="telemetry-console" style={{ padding: '40px 0 70px' }}>
+    <section className="terminal-section" id="telemetry-console">
       <div className="container">
         <div className="section-header">
           <div className="section-subtitle">Real-Time Autonomous Shell</div>
@@ -88,7 +89,7 @@ export default function TerminalConsole() {
               <span className="term-btn green" />
             </div>
             <div className="terminal-title">
-              <span style={{ color: '#A8D5E3' }}>⚡</span>
+              <span style={{ color: '#FF0000' }}>⚡</span>
               <span>paritosh@node-telemetry: ~ (bash / REST)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.74rem', color: '#10b981' }}>

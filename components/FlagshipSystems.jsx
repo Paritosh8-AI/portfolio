@@ -29,7 +29,7 @@ export default function FlagshipSystems() {
   ];
 
   return (
-    <section style={{ padding: '40px 0 90px' }}>
+    <section style={{ padding: '90px 0 120px' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-subtitle">Flagship Deployments</div>

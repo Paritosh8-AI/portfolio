@@ -36,7 +36,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="container" style={{ paddingTop: 110, paddingBottom: 80 }}>
+    <div className="container" style={{ paddingTop: 150, paddingBottom: 110 }}>
       <div className="section-header">
         <div className="section-subtitle">Architectural Case Studies</div>
         <h1 className="section-title">Flagship Production Systems</h1>
@@ -46,7 +46,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* SYSTEM 1: AgenticEV */}
-      <section id="agenticev" className="glass-card" style={{ marginBottom: 45, padding: '32px 24px' }}>
+      <section id="agenticev" className="glass-card" style={{ marginBottom: 60, padding: '48px 40px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16, marginBottom: 20 }}>
           <div>
             <div className="project-badge-row" style={{ marginBottom: 8 }}>
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* SYSTEM 2: UPI Sentinel with Interactive Simulator */}
-      <section id="upisentinel" className="glass-card" style={{ marginBottom: 45, padding: '32px 24px' }}>
+      <section id="upisentinel" className="glass-card" style={{ marginBottom: 60, padding: '48px 40px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16, marginBottom: 20 }}>
           <div>
             <div className="project-badge-row" style={{ marginBottom: 8 }}>
@@ -113,7 +113,7 @@ export default function ProjectsPage() {
               <span className="witty-pill">🛡️ Faster Than Your Bank's OTP</span>
             </div>
             <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 800 }}>🛡️ UPI Sentinel 2.0</h2>
-            <p className="text-mono" style={{ color: 'var(--accent-primary-deep)', fontWeight: 700, fontSize: '0.88rem', marginTop: 4 }}>
+            <p className="text-mono" style={{ color: 'var(--accent-primary)', fontWeight: 700, fontSize: '0.88rem', marginTop: 4 }}>
               Enterprise Real-Time AI Fraud Prevention System for Digital Payment Networks
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function ProjectsPage() {
             <div className="simulator-box">
               <div className="sim-header">
                 <div className="sim-title">
-                  <span style={{ color: '#db2777' }}>⚡</span>
+                  <span style={{ color: '#FF0000' }}>⚡</span>
                   <span>Live CRNN Attention Inference Simulator</span>
                 </div>
                 <span className="level-badge production">SUB-1.2MS ENGINE</span>
@@ -200,10 +200,10 @@ export default function ProjectsPage() {
               {simResult && (
                 <div className="sim-output-panel" style={{ marginTop: 14 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap' }}>
-                    <span style={{ fontWeight: 700, color: simResult.riskScore > 0.6 ? '#db2777' : '#047857' }}>
+                    <span style={{ fontWeight: 700, color: simResult.riskScore > 0.6 ? '#FF0000' : '#10b981' }}>
                       VERDICT: {simResult.verdict}
                     </span>
-                    <span className="text-mono" style={{ color: '#0e7490', fontWeight: 700 }}>
+                    <span className="text-mono" style={{ color: '#FF4D4D', fontWeight: 700 }}>
                       Latency: {simResult.latencyMs} ms
                     </span>
                   </div>
@@ -239,7 +239,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* SYSTEM 3: Breast Cancer Sentinel */}
-      <section id="cancersentinel" className="glass-card" style={{ padding: '32px 24px' }}>
+      <section id="cancersentinel" className="glass-card" style={{ padding: '48px 40px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16, marginBottom: 20 }}>
           <div>
             <div className="project-badge-row" style={{ marginBottom: 8 }}>

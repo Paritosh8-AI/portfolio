@@ -20,7 +20,7 @@ export default function ExperiencePage() {
   }, []);
 
   return (
-    <div className="container" style={{ paddingTop: 110, paddingBottom: 80 }}>
+    <div className="container" style={{ paddingTop: 150, paddingBottom: 110 }}>
       {/* Section Header */}
       <div className="section-header">
         <div className="section-subtitle">Systems Evolution</div>
@@ -35,33 +35,33 @@ export default function ExperiencePage() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 20,
-          marginBottom: 60,
+          gap: 28,
+          marginBottom: 70,
         }}
       >
-        <div className="glass-card" style={{ padding: 26 }}>
+        <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>⚖️</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: 'var(--accent-primary-deep)' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#FF0000' }}>
             1. Deterministic Causality
           </h3>
-          <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeights: 1.6 }}>
+          <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
             In production hardware and banking networks, an alert without an explanation is useless. I build systems that link statistical anomalies to verifiable causal dependencies, preventing hallucinations and giving operators instant confidence.
           </p>
         </div>
 
-        <div className="glass-card" style={{ padding: 26 }}>
+        <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>⚡</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: 'var(--accent-emerald)' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#10b981' }}>
             2. Latency as a First-Class Citizen
           </h3>
-          <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
             High accuracy at 500ms latency is unacceptable on instant payment rails. By compiling with <code>@tf.function</code> graph execution and in-memory indexes, UPI Sentinel processes complex sequence windows in under 1.2ms.
           </p>
         </div>
 
-        <div className="glass-card" style={{ padding: 26 }}>
+        <div className="glass-card" style={{ padding: '34px 28px' }}>
           <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>🎯</div>
-          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: 'var(--accent-purple)' }}>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: 8, color: '#FF4D4D' }}>
             3. Calibrated Probabilities
           </h3>
           <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>

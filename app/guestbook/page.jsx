@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function GuestbookPage() {
   return (
-    <div style={{ paddingTop: 100 }}>
+    <div style={{ paddingTop: 50, paddingBottom: 50 }}>
       <InteractiveGuestbook />
     </div>
   );

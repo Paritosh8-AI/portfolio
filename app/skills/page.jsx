@@ -310,7 +310,7 @@ export default function SkillsPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="container" style={{ paddingTop: 110, paddingBottom: 80 }}>
+    <div className="container" style={{ paddingTop: 150, paddingBottom: 110 }}>
       {/* Header */}
       <div className="section-header">
         <div className="section-subtitle">Real Capabilities, Zero Percentages</div>
@@ -322,7 +322,7 @@ export default function SkillsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-card" style={{ padding: '20px 24px', marginBottom: 36 }}>
+      <div className="glass-card" style={{ padding: '28px 32px', marginBottom: 44 }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Category Tabs */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>

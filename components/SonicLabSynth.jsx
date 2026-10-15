@@ -122,12 +122,12 @@ export default function SonicLabSynth() {
       const height = canvas.height;
 
       // Dark oscilloscope display background
-      ctx.fillStyle = '#090d16';
+      ctx.fillStyle = '#050101';
       ctx.fillRect(0, 0, width, height);
 
       // Draw subtle grid lines
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255, 120, 172, 0.08)';
+      ctx.strokeStyle = 'rgba(61, 0, 0, 0.45)';
       ctx.beginPath();
       for (let x = 0; x < width; x += 30) {
         ctx.moveTo(x, 0);
@@ -143,7 +143,7 @@ export default function SonicLabSynth() {
       if (!analyser) {
         // Draw resting idle pulse line
         ctx.lineWidth = 2;
-        ctx.strokeStyle = 'rgba(255, 120, 172, 0.4)';
+        ctx.strokeStyle = 'rgba(255, 0, 0, 0.45)';
         ctx.beginPath();
         const midY = height / 2;
         ctx.moveTo(0, midY);
@@ -157,9 +157,9 @@ export default function SonicLabSynth() {
       analyser.getByteTimeDomainData(dataArray);
 
       ctx.lineWidth = 2.5;
-      ctx.strokeStyle = '#FF78AC';
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#FF78AC';
+      ctx.strokeStyle = '#FF0000';
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#FF0000';
       ctx.beginPath();
 
       const sliceWidth = width / bufferLength;

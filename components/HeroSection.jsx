@@ -252,9 +252,9 @@ export default function HeroSection() {
 
             <div
               style={{
-                background: '#FAF8F4',
-                borderTop: '1px solid var(--border-subtle)',
-                padding: '10px 20px',
+                background: '#140202',
+                borderTop: '1px solid #3D0000',
+                padding: '12px 22px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -262,11 +262,11 @@ export default function HeroSection() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span className="pulse-dot" />
-                <span className="text-mono" style={{ fontWeight: 600, color: '#0f172a', fontSize: '0.78rem' }}>
+                <span className="text-mono" style={{ fontWeight: 600, color: '#FFFFFF', fontSize: '0.78rem' }}>
                   Live MERN Inference Engine
                 </span>
               </div>
-              <span className="text-mono" style={{ color: '#64748b', fontSize: '0.74rem' }}>
+              <span className="text-mono" style={{ color: '#94A3B8', fontSize: '0.74rem' }}>
                 FastMCP • Next.js • Mongo
               </span>
             </div>

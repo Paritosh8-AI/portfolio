@@ -4,7 +4,7 @@ import SonicLabSynth from '@/components/SonicLabSynth';
 
 export default function InterestsPage() {
   return (
-    <div className="container" style={{ paddingTop: 110, paddingBottom: 80 }}>
+    <div className="container" style={{ paddingTop: 150, paddingBottom: 110 }}>
       {/* Section Header */}
       <div className="section-header">
         <div className="section-subtitle">Innovations &amp; Creative Horizons</div>
