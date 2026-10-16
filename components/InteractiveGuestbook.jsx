@@ -267,30 +267,6 @@ export default function InteractiveGuestbook() {
           </button>
         </div>
 
-        {/* Database Persistence Notice Banner */}
-        {!dbType.includes('mongodb') && !loading && (
-          <div
-            style={{
-              padding: '10px 16px',
-              borderRadius: 8,
-              background: 'rgba(242, 166, 123, 0.10)',
-              border: '1px solid rgba(242, 166, 123, 0.32)',
-              marginBottom: 16,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: 10,
-              fontSize: '0.78rem',
-              color: '#FFD38B',
-            }}
-          >
-            <span>
-              ⚡ <strong>Storage Sync:</strong> Client-side local backup is active. To persist reviews permanently across all visitors worldwide, set <code style={{ color: '#F2A67B', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: 4 }}>MONGODB_URI</code> in Vercel Project Settings.
-            </span>
-          </div>
-        )}
-
         {/* Badge Filter Bar */}
         <div className="guestbook-filter-bar">
           <button
