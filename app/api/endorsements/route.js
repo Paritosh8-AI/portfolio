@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase, inMemoryStore, INITIAL_ENDORSEMENTS } from '@/lib/db';
 import Endorsement from '@/models/Endorsement';
+import { sendEndorsementNotification } from '@/lib/mailer';
 
 // GET /api/endorsements - Retrieve all endorsements
 export async function GET(request) {
@@ -95,6 +96,18 @@ export async function POST(request) {
         verified: true,
       });
 
+      // Dispatch email notification to Paritosh (asynchronous / non-blocking)
+      sendEndorsementNotification({
+        name: name.trim(),
+        role: role.trim(),
+        company: company ? company.trim() : 'Tech Community',
+        relationship: relationship ? relationship.trim() : 'Engineering Peer',
+        message: message.trim(),
+        badge: badge || '🧠 Deep Learning',
+        rating: Math.min(5, Math.max(1, Number(rating) || 5)),
+        githubUrl: githubUrl ? githubUrl.trim() : '',
+      }).catch((e) => console.warn('Endorsement notification error:', e));
+
       return NextResponse.json(
         {
           success: true,
@@ -117,6 +130,18 @@ export async function POST(request) {
       rating,
       githubUrl,
     });
+
+    // Dispatch email notification to Paritosh (asynchronous / non-blocking)
+    sendEndorsementNotification({
+      name: name.trim(),
+      role: role.trim(),
+      company: company ? company.trim() : 'Tech Community',
+      relationship: relationship ? relationship.trim() : 'Engineering Peer',
+      message: message.trim(),
+      badge: badge || '🧠 Deep Learning',
+      rating: Math.min(5, Math.max(1, Number(rating) || 5)),
+      githubUrl: githubUrl ? githubUrl.trim() : '',
+    }).catch((e) => console.warn('Endorsement notification error:', e));
 
     return NextResponse.json(
       {

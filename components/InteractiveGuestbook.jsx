@@ -36,18 +36,78 @@ export default function InteractiveGuestbook() {
     githubUrl: '',
   });
 
-  // Fetch endorsements
+  const LOCAL_STORAGE_KEY = 'paritosh_peer_endorsements_v2';
+
+  // Fetch endorsements with resilient local merge
   const fetchEndorsements = async () => {
     try {
       setLoading(true);
       const res = await fetch(`/api/endorsements?sort=${sortBy}&badge=${activeBadge}`);
       const json = await res.json();
-      if (json.success) {
-        setEndorsements(json.data || []);
-        setDbType(json.dbType || 'in-memory');
+      
+      const serverData = (json.success && Array.isArray(json.data)) ? json.data : [];
+      setDbType(json.dbType || 'in-memory');
+
+      // Retrieve locally saved submissions (resilient offline/cold-start backup)
+      let localData = [];
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+          if (stored) localData = JSON.parse(stored);
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // Merge server and local data, deduplicating by ID or signature
+      const mergedMap = new Map();
+      serverData.forEach((item) => {
+        const key = item.id || item._id || `${item.name}-${item.message}`;
+        mergedMap.set(key, item);
+      });
+
+      localData.forEach((item) => {
+        const key = item.id || item._id || `${item.name}-${item.message}`;
+        if (!mergedMap.has(key)) {
+          mergedMap.set(key, item);
+        }
+      });
+
+      let combined = Array.from(mergedMap.values());
+
+      // Apply client-side filter if activeBadge is set
+      if (activeBadge && activeBadge !== 'all') {
+        combined = combined.filter((item) =>
+          item.badge && item.badge.toLowerCase().includes(activeBadge.toLowerCase())
+        );
+      }
+
+      // Apply client-side sorting
+      if (sortBy === 'top') {
+        combined.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+      } else {
+        combined.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+      }
+
+      setEndorsements(combined);
+
+      // Keep localStorage synchronized with complete set
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(combined));
+        } catch (e) {
+          // ignore
+        }
       }
     } catch (err) {
       console.error('Failed to load endorsements:', err);
+      // Fallback to local storage if API call fails
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+          if (stored) setEndorsements(JSON.parse(stored));
+        } catch (e) {}
+      }
     } finally {
       setLoading(false);
     }
@@ -103,8 +163,17 @@ export default function InteractiveGuestbook() {
       }
 
       setFormSuccess('Endorsement verified and saved to database!');
-      // Prepend newly created item
-      setEndorsements((prev) => [data.data, ...prev]);
+      // Prepend newly created item and persist to local storage
+      const newItem = data.data;
+      setEndorsements((prev) => {
+        const updated = [newItem, ...prev.filter((i) => i.id !== newItem.id)];
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+          } catch (e) {}
+        }
+        return updated;
+      });
 
       // Reset form
       setFormData({
@@ -152,7 +221,7 @@ export default function InteractiveGuestbook() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <span
               className={`db-status-badge ${dbType.includes('mongodb') ? 'live' : 'fallback'}`}
-              title="Database connection state"
+              title={dbType.includes('mongodb') ? 'Connected to permanent MongoDB Atlas cluster' : 'Running with browser & server in-memory fallback. Connect MONGODB_URI on Vercel for cloud persistence.'}
             >
               <span
                 style={{
@@ -197,6 +266,30 @@ export default function InteractiveGuestbook() {
             <span>Sign Guestbook</span>
           </button>
         </div>
+
+        {/* Database Persistence Notice Banner */}
+        {!dbType.includes('mongodb') && !loading && (
+          <div
+            style={{
+              padding: '10px 16px',
+              borderRadius: 8,
+              background: 'rgba(242, 166, 123, 0.10)',
+              border: '1px solid rgba(242, 166, 123, 0.32)',
+              marginBottom: 16,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 10,
+              fontSize: '0.78rem',
+              color: '#FFD38B',
+            }}
+          >
+            <span>
+              ⚡ <strong>Storage Sync:</strong> Client-side local backup is active. To persist reviews permanently across all visitors worldwide, set <code style={{ color: '#F2A67B', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: 4 }}>MONGODB_URI</code> in Vercel Project Settings.
+            </span>
+          </div>
+        )}
 
         {/* Badge Filter Bar */}
         <div className="guestbook-filter-bar">
