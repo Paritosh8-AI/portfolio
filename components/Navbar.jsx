@@ -94,7 +94,7 @@ export default function Navbar() {
             </Link>
           </div>
         ))}
-        <div style={{ marginTop: 8, paddingTop: 10, borderTop: '1px solid var(--border-subtle)' }}>
+        <div style={{ marginTop: 8, paddingTop: 10, borderTop: '1px solid var(--border-subtle)', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <a
             href="https://github.com/Paritosh8-AI"
             target="_blank"
@@ -104,6 +104,16 @@ export default function Navbar() {
             onClick={() => setIsMobileOpen(false)}
           >
             GitHub (@Paritosh8-AI)
+          </a>
+          <a
+            href="https://www.linkedin.com/in/paritosh-mukherjee-471399360"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+            style={{ width: '100%', justifyContent: 'center', borderColor: 'var(--border-medium)', color: '#FFD38B' }}
+            onClick={() => setIsMobileOpen(false)}
+          >
+            LinkedIn Profile ↗
           </a>
         </div>
       </div>

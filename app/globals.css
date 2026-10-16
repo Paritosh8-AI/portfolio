@@ -1637,7 +1637,7 @@ h6 {
   line-height: 1.6;
 }
 
-/* --- MINIMALIST TECHNICAL SCHEMATICS --- */
+/* --- MINIMALIST TECHNICAL SCHEMATICS (RESPONSIVE & FLUID) --- */
 .minimal-schematic {
   background: #170b1d;
   border: 1px solid var(--border-medium);
@@ -1648,15 +1648,27 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .minimal-schematic {
+    padding: 16px 14px;
+    gap: 14px;
+    border-radius: 12px;
+  }
 }
 
 .schematic-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
 }
 
 .schematic-title {
@@ -1667,6 +1679,8 @@ h6 {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .schematic-badge {
@@ -1678,6 +1692,7 @@ h6 {
   background: rgba(82, 45, 96, 0.4);
   color: #FDF6EC;
   border: 1px solid var(--border-medium);
+  white-space: nowrap;
 }
 
 .schematic-badge.emerald {
@@ -1705,6 +1720,7 @@ h6 {
   background: #FFD38B;
   box-shadow: 0 0 8px #FFD38B;
   display: inline-block;
+  flex-shrink: 0;
   animation: pulse-dot-anim 2s infinite;
 }
 
@@ -1713,6 +1729,14 @@ h6 {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 680px) {
+  .schematic-flow-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 
 .schematic-node {
@@ -1723,6 +1747,14 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 680px) {
+  .schematic-node {
+    padding: 12px 14px;
+  }
 }
 
 .schematic-node.highlight {
@@ -1763,6 +1795,25 @@ h6 {
   text-align: center;
 }
 
+@media (max-width: 680px) {
+  .schematic-arrow-col {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    min-width: unset;
+    padding: 4px 0;
+  }
+  .schematic-arrow-col .arrow-line {
+    transform: rotate(90deg);
+    display: inline-block;
+  }
+  .schematic-arrow-col .arrow-line.reverse {
+    transform: rotate(90deg);
+    display: inline-block;
+  }
+}
+
 .arrow-label {
   font-size: 0.68rem;
   font-weight: 600;
@@ -1789,6 +1840,16 @@ h6 {
   background: #120917;
   border: 1px dashed var(--border-medium);
   border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 680px) {
+  .schematic-telemetry-strip {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+  }
 }
 
 .telem-item {
@@ -1796,16 +1857,21 @@ h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 
 .telem-item .k {
   color: var(--text-muted);
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .telem-item .v {
   color: var(--text-bright);
   font-weight: 700;
+  text-align: right;
+  word-break: break-word;
 }
 
 /* DSP Spectrum Visualizer */
@@ -2046,7 +2112,47 @@ h6 {
   display: block;
 }
 
+@media (max-width: 600px) {
+  .piano-keyboard-case {
+    padding: 10px 6px 8px;
+    border-radius: 10px;
+  }
+  .piano-keys-surface {
+    height: 125px;
+  }
+  .piano-white-key {
+    padding-bottom: 6px;
+  }
+  .piano-white-key .note-label {
+    font-size: 0.62rem;
+  }
+  .piano-white-key .shortcut-badge {
+    display: none;
+  }
+  .piano-black-key {
+    padding-bottom: 4px;
+  }
+  .piano-black-key .note-label {
+    font-size: 0.52rem;
+  }
+  .piano-black-key .shortcut-badge {
+    display: none;
+  }
+}
+
 /* 2. Wide Horizontal Engineering Showcase Cards */
+.interests-page-container {
+  padding-top: 140px;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+  .interests-page-container {
+    padding-top: 96px;
+    padding-bottom: 60px;
+  }
+}
+
 .interest-showcase-card {
   background: var(--bg-card);
   border: 1px solid var(--border-medium);
@@ -2054,6 +2160,8 @@ h6 {
   padding: 44px 40px;
   box-shadow: var(--shadow-card);
   transition: all 0.3s var(--ease-spring);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .interest-showcase-card:hover {
@@ -2066,6 +2174,7 @@ h6 {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 44px;
   align-items: center;
+  width: 100%;
 }
 
 .interest-showcase-grid.reverse {
@@ -2075,12 +2184,49 @@ h6 {
 @media (max-width: 960px) {
   .interest-showcase-grid,
   .interest-showcase-grid.reverse {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .interest-showcase-grid .minimal-schematic,
+  .interest-showcase-grid.reverse .minimal-schematic {
+    order: 2;
+    width: 100%;
   }
   .sonic-studio-card,
   .interest-showcase-card {
-    padding: 32px 24px;
+    padding: 26px 18px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sonic-studio-card,
+  .interest-showcase-card {
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+  .interests-stack {
+    gap: 24px;
+  }
+}
+
+.dsp-analytics-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #170b1d;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 680px) {
+  .dsp-analytics-panel {
+    padding: 16px 14px;
+    border-radius: 12px;
   }
 }
 
@@ -2099,6 +2245,24 @@ h6 {
   left: 28px;
   width: 2px;
   background: linear-gradient(to bottom, #FFD38B, #F2A67B, #80426E, transparent);
+}
+
+@media (max-width: 680px) {
+  .timeline-container::before {
+    left: 12px;
+  }
+  .timeline-entry {
+    margin-left: 36px !important;
+    margin-bottom: 30px !important;
+  }
+  .timeline-node-dot {
+    left: -30px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .timeline-card {
+    padding: 20px 16px !important;
+  }
 }
 
 .timeline-entry {

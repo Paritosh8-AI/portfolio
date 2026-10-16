@@ -13,7 +13,7 @@ export default function InterestsPage() {
   };
 
   return (
-    <div className="container" style={{ paddingTop: 160, paddingBottom: 120 }}>
+    <div className="container interests-page-container">
       {/* Section Header with Generous Clearance */}
       <div className="section-header" style={{ marginBottom: 54 }}>
         <div className="section-subtitle">EXPLORATION &amp; CREATIVE LABS</div>
@@ -55,7 +55,7 @@ export default function InterestsPage() {
             </div>
 
             {/* Right: Wide FastMCP Causal DAG Architecture */}
-            <div className="minimal-schematic" style={{ padding: '26px 28px' }}>
+            <div className="minimal-schematic">
               <div className="schematic-header">
                 <div className="schematic-title">
                   <span className="status-pulse-dot" />
@@ -64,7 +64,7 @@ export default function InterestsPage() {
                 <span className="schematic-badge purple">do(X) CALCULUS</span>
               </div>
 
-              <div className="schematic-flow-row" style={{ gap: 20 }}>
+              <div className="schematic-flow-row">
                 <div className="schematic-node">
                   <span className="node-tag">Telemetry Event</span>
                   <span className="node-detail">EVSE Contactor Drop</span>
@@ -107,7 +107,7 @@ export default function InterestsPage() {
         <article className="interest-showcase-card">
           <div className="interest-showcase-grid">
             {/* Left: Wide OCPP 1.6-J Handshake Architecture */}
-            <div className="minimal-schematic" style={{ padding: '26px 28px' }}>
+            <div className="minimal-schematic">
               <div className="schematic-header">
                 <div className="schematic-title">
                   <span className="status-pulse-dot" />
@@ -116,7 +116,7 @@ export default function InterestsPage() {
                 <span className="schematic-badge emerald">WSS / JSON</span>
               </div>
 
-              <div className="schematic-flow-row" style={{ gap: 20 }}>
+              <div className="schematic-flow-row">
                 <div className="schematic-node">
                   <span className="node-tag">EVSE #8042</span>
                   <span className="node-detail">CCS2 Dual Gun</span>
@@ -227,17 +227,7 @@ export default function InterestsPage() {
             </div>
 
             {/* Right: Acoustic Spectrum Rack & Intuition */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                background: '#170b1d',
-                border: '1px solid var(--border-medium)',
-                borderRadius: 14,
-                padding: '26px 24px',
-              }}
-            >
+            <div className="dsp-analytics-panel">
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                   <span className="text-mono" style={{ fontSize: '0.80rem', fontWeight: 700, color: '#FFD38B' }}>

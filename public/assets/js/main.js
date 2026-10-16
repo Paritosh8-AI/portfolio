@@ -371,7 +371,7 @@ function initTerminal() {
 <span class="term-accent">VERIFIED CHANNELS:</span>
   • GitHub:    <a href="https://github.com/Paritosh8-AI" target="_blank" class="term-green">github.com/Paritosh8-AI</a>
   • Instagram: <a href="https://www.instagram.com/mewzicallyyours/" target="_blank" class="term-pink">instagram.com/mewzicallyyours</a>
-  • LinkedIn:  <a href="https://linkedin.com" target="_blank" class="term-green">Connect on LinkedIn</a>
+  • LinkedIn:  <a href="https://www.linkedin.com/in/paritosh-mukherjee-471399360" target="_blank" class="term-green">linkedin.com/in/paritosh-mukherjee-471399360</a>
   • Email:     <a href="mailto:paritoshmukherjee8@gmail.com" class="term-green">paritoshmukherjee8@gmail.com</a>
 `,
     clear: () => {

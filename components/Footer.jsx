@@ -30,7 +30,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/paritosh-mukherjee-471399360"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon-btn"
